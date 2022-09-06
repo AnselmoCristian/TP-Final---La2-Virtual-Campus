@@ -8,13 +8,31 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ContactUsComponent {
 
+  formItems: FormItem[] = [
+    {
+      label: "From",
+      name: "from",
+      placeHolder: "From",
+    },
+    {
+      label: "Subject",
+      name: "asunto",
+      placeHolder: "Subject",
+    }
+  ];
+
   // Inputs
   formContact = new FormGroup({
     from: new FormControl('', { validators: [ Validators.required ] }),
-    to: new FormControl('', { validators: [ Validators.required ] }),
-    subject: new FormControl('', { validators: [ Validators.required ] }),
-    password: new FormControl('', { validators: [ Validators.required ] }),
+    asunto: new FormControl('', { validators: [ Validators.required ] }),
+    text: new FormControl('', { validators: [ Validators.required ] }),
   });
 
   constructor() { }
+}
+
+export interface FormItem {
+  label: String;
+  name: String;
+  placeHolder: String;
 }
