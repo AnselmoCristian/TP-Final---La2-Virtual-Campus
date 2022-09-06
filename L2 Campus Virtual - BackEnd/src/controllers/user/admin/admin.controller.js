@@ -259,7 +259,7 @@ const destroy = async (req,res) => {
     else {
         console.log('eliminando usuario.....');
         user.destroy().then(user => {
-            Mail.destoyUser(user.email);
+            //Mail.destoyUser(user.email);
             res.status(200).json({status:200,msg:"operation complete"})
         });
     }
