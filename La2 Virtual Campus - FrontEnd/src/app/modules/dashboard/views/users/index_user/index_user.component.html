@@ -1,0 +1,95 @@
+<fte-navbar></fte-navbar>
+
+<article class="table">
+
+  <h1><span class="table_lista" *ngIf="role === 'admin'">Admin's </span> <span class="table_lista">Users List</span></h1>
+
+  <!-- Filter Input Form -->
+  <article class="search">
+    <form [formGroup]="formSearch" class="search_form">
+        
+        <mat-form-field appearance="outline" class="search_input">
+            <mat-label>Filter: </mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter By Id">
+        </mat-form-field>
+    
+    </form>
+
+  </article>
+  
+  <!-- Top buttons -->
+  <button mat-raised-button color="warn" routerLink="/dashboard">Go Back</button>
+  <button mat-raised-button color="primary" routerLink="/dashboard/create_user" class="table_button_A" *ngIf="role === 'admin'">Create New User</button>
+
+  <!-- Table start -->
+
+  <table mat-table [dataSource]="dataSource" class="table_table">
+    
+    <!-- User's Role -->
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef>User's Role</th>
+      <td mat-cell *matCellDef="let element"> {{element.role}}</td>
+    </ng-container>
+
+    <!-- User's Id -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>N° Id</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <!-- User's Name -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>User's Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    
+    <!-- User's Document Number -->
+    <ng-container matColumnDef="dni">
+      <th mat-header-cell *matHeaderCellDef>User's Document</th>
+      <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+    </ng-container>
+
+    <!-- User's Email -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>User's Email</th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+    
+    
+    <!-- User's Creation Date -->
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>User's Creation Date</th>
+      <td mat-cell *matCellDef="let element"> {{element.createdAt}}</td>
+    </ng-container>
+
+    <!-- User's Update Date -->
+    <ng-container matColumnDef="updatedAt">
+      <th mat-header-cell *matHeaderCellDef>User's Update Date</th>
+      <td mat-cell *matCellDef="let element"> {{element.updatedAt}}</td>
+    </ng-container>
+
+    <!-- Edit User -->
+    <ng-container matColumnDef="editButton">
+      <th mat-header-cell *matHeaderCellDef><span *ngIf="role === 'admin'">Edit options</span></th>
+
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <!-- Edit button -->
+          <button mat-menu-item (click)="popUpEditUser(element)">Edit User</button>
+          <!-- Delete button -->
+          <button mat-menu-item (click)="deleteUser(element.id)">Delete User</button>
+        </mat-menu>
+      </td>
+
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</article>
+
+<fte-footer></fte-footer>

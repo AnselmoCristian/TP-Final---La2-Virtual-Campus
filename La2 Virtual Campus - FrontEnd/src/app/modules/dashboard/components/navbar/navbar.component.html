@@ -1,0 +1,22 @@
+<mat-toolbar class="toolbar" color="warn">
+    <mat-toolbar-row class="toolbar_content" class="mat-elevation-z1">
+      <!-- <a mat-button class="toolbar_a" routerLink="/">Campus virtual LaSegunda</a> -->
+      <span class="toolbar_title" routerLink="/dashboard">La2 virtual Campus</span>
+      
+      <span class="example-spacer"></span>
+
+      <ul class="navbar">
+        <li *ngFor="let item of navItems" class="navItems">
+          <a mat-button class="toolbar_b" [routerLink]=[item.url]>{{ item.label }}</a>
+        </li>
+      </ul>      
+
+      <button mat-button [matMenuTriggerFor]="beforeMenu" class="toolbar_bienvenido">Bienvenido {{ userNavName }}</button>
+
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="logOut()"> Log Out </button>
+      </mat-menu>
+
+      
+    </mat-toolbar-row>
+</mat-toolbar>

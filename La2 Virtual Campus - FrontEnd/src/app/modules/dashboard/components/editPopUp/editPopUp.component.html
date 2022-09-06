@@ -1,0 +1,38 @@
+<article class="editUser">
+
+    <form [formGroup]="formEditUser" class="editUser_form">
+
+        <h1 class="editUser_titulo">Edit a Student</h1>
+        
+        <mat-form-field appearance="outline" class="editUser_input">
+            <mat-label>User Name</mat-label>
+            <input matInput type="text" formControlName="name" placeholder="User Name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="editUser_input">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="Email">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="editUser_input">
+            <mat-label>Document Number</mat-label>
+            <input matInput type="number" formControlName="dni" placeholder="Document">
+        </mat-form-field>
+
+        <ng-container *ngIf="true">
+                <mat-form-field appearance="outline" class="editUser_select">
+                    <mat-label>User Role</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="role" formControlName="role">
+                        <mat-option *ngFor="let roles of role" [value]="roles.value" class="editUser_option">
+                        {{roles.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+        </ng-container>
+        
+        <button (click)="cancelButton()" type="submit" mat-raised-button color="primary" class="editUser_button">Cancel</button>
+        <button (click)="editUser()" type="submit" mat-raised-button color="warn" class="editUser_button">Edit</button>
+    
+    </form>
+
+</article>

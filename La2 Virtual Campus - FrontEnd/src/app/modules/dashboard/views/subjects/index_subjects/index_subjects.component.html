@@ -1,0 +1,87 @@
+<fte-navbar></fte-navbar>
+
+<article class="table">
+
+  <h1><span *ngIf="role === 'admin'">Admin's </span><span class="table_lista">Subjects List</span></h1>
+
+  <!-- Filter Input Form -->
+  <article class="search">
+    <form [formGroup]="formSearch" class="search_form">
+        
+        <mat-form-field appearance="outline" class="search_input">
+            <mat-label>Filter: </mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+        </mat-form-field>
+    
+    </form>
+  </article>
+
+  <!-- Top buttons -->
+  <button type="button" mat-raised-button color="warn" routerLink="/dashboard">Go Back</button>
+  <button type="button" mat-raised-button color="primary" routerLink="/dashboard/create_subjects" class="table_button_A" *ngIf="role === 'admin'">Crete New Subject</button>
+
+  
+  <!-- Table start -->
+
+  <table mat-table [dataSource]="dataSource" class="table_table">
+
+    <!-- Subject's Id -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>N° Id</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <!-- Subject's Name -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Subject's Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Subject's Quota -->
+    <ng-container matColumnDef="quota">
+      <th mat-header-cell *matHeaderCellDef>Subject's Quota</th>
+      <td mat-cell *matCellDef="let element"> {{element.quota}} </td>
+    </ng-container>
+
+    <!-- Subject's Registered -->
+    <ng-container matColumnDef="registered">
+      <th mat-header-cell *matHeaderCellDef>Subject's Quota</th>
+      <td mat-cell *matCellDef="let element"> {{element.registered}} </td>
+    </ng-container>
+    
+    <!-- Subscription Date -->
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>Subject's Subscription Date</th>
+      <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+    </ng-container>
+
+    <!-- Update Date -->
+    <ng-container matColumnDef="updatedAt">
+      button   <th mat-header-cell *matHeaderCellDef>Subject's Update Date</th>
+      <td mat-cell *matCellDef="let element"> {{element.updatedAt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="editButton">
+      <th mat-header-cell *matHeaderCellDef><span *ngIf="role === 'admin'">Edit options</span></th>
+    
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button *ngIf="role === 'admin'" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <!-- Edit button -->
+          <button mat-menu-item (click)="editPopUp(element)">Edit Subject</button>
+          <!-- Delete button -->
+          <button mat-menu-item (click)="deleteSubject(element.id)">Delete</button>
+        </mat-menu>
+      </td>
+
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</article>
+
+<fte-footer></fte-footer>

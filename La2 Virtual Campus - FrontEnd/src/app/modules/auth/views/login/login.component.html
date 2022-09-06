@@ -1,0 +1,37 @@
+<mat-toolbar color="warn">
+    <a mat-button class="toolbar_a" routerLink="/">LaSegunda virtual Campus</a>
+</mat-toolbar>
+
+<article class="login">
+    <form [formGroup]="formLogin" class="login_form">
+
+        <h1 class="login_titulo">Log In</h1>
+        
+        <mat-form-field appearance="outline" class="login_input">
+            <mat-label>Document Number</mat-label>
+            <input matInput type="number" formControlName="document" placeholder="Document">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="login_input">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        
+        <mat-radio-group aria-label="Select an option" formControlName="entity">
+            <mat-radio-button value="admin" class="login_radio">Admin</mat-radio-button>
+            <mat-radio-button value="teacher" class="login_radio">Teacher</mat-radio-button>
+            <mat-radio-button value="student" class="login_radio">Student</mat-radio-button>
+        </mat-radio-group>
+
+        <button (click)="onSubmit()" type="submit" mat-raised-button color="warn" class="login_button">Log In</button>
+        
+        <p class="login_paragraph">New account? <a routerLink="/register">Sing up Now</a></p>
+    
+    </form>
+
+</article>
+
+<fte-footer></fte-footer>

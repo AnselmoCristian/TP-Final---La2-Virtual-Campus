@@ -1,0 +1,133 @@
+.toolbar_a{
+    font-size: large;
+}
+
+.createSubject {
+    display: flex;
+    margin-top: 3rem;
+    margin-bottom: 10.25rem;  
+    
+    &_form {
+        width: 600px;
+        margin: auto;
+    }
+
+    &_titulo {
+        margin-bottom: 3rem;
+        text-align: center;
+        font-size: xx-large;
+    }
+
+    &_input {
+        width: 100%;
+    }
+
+    &_button {
+        width: 100%;
+        height: 3rem;
+    }
+
+    &_paragraph {
+        margin-top: 1rem;
+    }
+
+    &_select {
+        width: 100%;
+    }
+
+    &_BackButton {
+        margin: 3rem 3rem 0rem 3rem;
+    }
+}
+
+//----------------------------------------------------------------------------
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    .createSubject {
+        margin-top: 2rem;
+        margin-bottom: 3.25rem;
+        
+        &_form {
+            width: 325px;
+        }
+
+        &_BackButton {
+            margin: 1rem 3rem 0rem 1rem;
+        }
+    }
+    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+    .createSubject {
+        margin-top: 2rem;
+        margin-bottom: 3.25rem;
+        
+        &_form {
+            width: 425px;
+        }
+
+        &_BackButton {
+            margin: 1rem 3rem 0rem 1rem;
+        }
+    }
+   
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    .createSubject {
+        margin-top: 2rem;
+        margin-bottom: 2.8rem;
+        
+        &_form {
+            width: 525px;
+        }
+
+        &_BackButton {
+            margin: 2rem 3rem 0rem 2rem;
+        }
+    }
+   
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+    .createSubject {
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+        
+        &_form {
+            width: 600px;
+        }
+
+        &_BackButton {
+            margin: 3rem 3rem 0rem 3rem;
+        }
+    }
+   
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+    .createSubject {
+        margin-top: 3rem;
+        margin-bottom: 0.5rem;
+        
+        &_form {
+            width: 600px;
+        }
+
+        &_BackButton {
+            margin: 3rem 3rem 0rem 3rem;
+        }
+    }
+   
+}

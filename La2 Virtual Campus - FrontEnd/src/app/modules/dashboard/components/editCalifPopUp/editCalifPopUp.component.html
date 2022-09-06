@@ -1,0 +1,48 @@
+<article class="editUser">
+
+    <form [formGroup]="formEditUser" class="editUser_form">
+
+        <h1 class="editUser_titulo">Edit Califications</h1>
+        
+        <mat-form-field appearance="outline" class="editUser_input">
+            <mat-label>User Name</mat-label>
+            <input matInput type="text" formControlName="name" placeholder="User Name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="editUser_input">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="Email">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="editUser_input">
+            <mat-label>Document Number</mat-label>
+            <input matInput type="number" formControlName="dni" placeholder="Document">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="editUser_input" formControlName="entity">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <ng-container *ngIf="true">
+            <form>
+                <mat-form-field appearance="outline" class="editUser_select">
+                    <mat-label>User Role</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="entity">
+                        <mat-option *ngFor="let role of roles" [value]="role.value" class="editUser_option" FormControlName="entity">
+                        {{role.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </ng-container>
+        
+        <button (click)="cancelButton()" type="submit" mat-raised-button color="primary" class="editUser_button">Cancel</button>
+        <button (click)="onSubmit()" type="submit" mat-raised-button color="warn" class="editUser_button">Edit</button>
+    
+    </form>
+
+</article>

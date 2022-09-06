@@ -1,0 +1,43 @@
+.toolbar_a{
+    font-size: large;
+}
+
+.editUser {
+    display: flex;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background-color: whitesmoke;
+
+    &_titulo {
+        margin-bottom: 3rem;
+        text-align: center;
+        font-size: xx-large;
+    }
+
+    &_input {
+        width: 100%;
+    }
+
+    &_button {
+        width: 40%;
+        // height: 3rem;
+        margin-left: 1.4rem;
+    }
+
+    &_paragraph {
+        margin-top: 1rem;
+    }
+
+    &_select {
+        width: 100%;     
+    }
+
+    &_BackButton {
+        margin: 3rem 3rem 0rem 3rem;
+    }
+
+    /* &_option {
+        text-align: center;
+    } */
+}

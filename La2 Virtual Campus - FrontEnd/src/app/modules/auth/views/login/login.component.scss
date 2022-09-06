@@ -1,0 +1,147 @@
+.toolbar_a{
+    font-size: large;
+}
+
+.login {
+    display: flex;
+
+    &_input {
+        width: 100%;
+    }
+
+    &_titulo {
+        margin-bottom: 1rem;
+        text-align: center;
+        font-size: xx-large;
+    }
+
+    &_paragraph {
+        margin-top: 1rem;
+    }
+
+    &_form {
+        margin: auto;
+    }
+
+    &_button {
+        width: 100%;
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) {
+
+    .login {
+        margin-top: 4rem;
+        margin-bottom: 6rem;
+        
+        &_form {
+            width: 330px;
+        }
+
+        &_radio {
+            margin: 0 1rem 1rem 1rem;
+        }
+
+        &_button {
+            height: 3rem;
+        }
+    }
+ }
+
+ /* Small devices (portrait tablets and large phones, 600px and up) */
+ @media only screen and (min-width: 600px) {
+
+    .login {
+        margin-top: 4rem;
+        margin-bottom: 23.7rem;
+        
+        &_form {
+            width: 350px;
+        }
+
+        &_radio {
+            margin: 0 1rem 1rem 1rem;
+        }
+
+        &_button {
+            height: 3rem;
+        }
+    }
+ }
+ 
+ /* Medium devices (landscape tablets, 768px and up) */
+ @media only screen and (min-width: 768px) {
+
+    .login {
+        margin-top: 4rem;
+        margin-bottom: 23.7rem;
+        
+        &_form {
+            width: 550px;
+        }
+
+        &_radio {
+            margin: 0 1rem 1rem 4rem;
+        }
+
+        &_titulo {
+            margin-bottom: 3rem;
+        }
+
+        &_button {
+            height: 3rem;
+        }
+    }
+ }
+ 
+ /* Large devices (laptops/desktops, 992px and up) */
+ @media only screen and (min-width: 992px) {
+
+    .login {
+        margin-top: 4rem;
+        margin-bottom: 16.65rem;
+        
+        &_form {
+            width: 550px;
+        }
+
+        &_radio {
+            margin: 0 1rem 1rem 4rem;
+        }
+
+        &_titulo {
+            margin-bottom: 3rem;
+        }
+
+        &_button {
+            height: 3rem;
+        }
+    }
+
+ }
+ 
+ /* Extra large devices (large laptops and desktops, 1200px and up) */
+ @media only screen and (min-width: 1200px) {
+
+    .login {
+        margin-top: 4rem;
+        margin-bottom: 30.65rem;
+        
+        &_form {
+            width: 600px;
+        }
+        
+        &_radio {
+            margin: 0 1rem 1rem 3rem;
+        }
+
+        &_titulo {
+            margin-bottom: 3rem;
+        }
+
+        &_button {
+            height: 3rem;
+        }
+    }
+}

@@ -1,0 +1,123 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+  
+.navbar {
+    display: flex;
+}
+
+.navItems {
+    list-style: none;
+}
+    
+.toolbar {
+    
+    &_title {
+    font-size: small;
+    }
+    
+    &_toolbar_b {
+        font-size: small;
+    }
+
+    &_bienvenido {
+        font-size: small;
+    }
+}
+
+//---------------------------------------------------
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    
+    .toolbar {
+    
+        &_title {
+        font-size: small;
+        }
+        
+        &_b {
+            font-size: x-small;
+        }
+
+        &_bienvenido {
+            font-size: x-small;
+        }
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    
+    .toolbar {
+    
+        &_title {
+        font-size: small;
+        }
+        
+        &_b {
+            font-size: x-small;
+        }
+
+        &_bienvenido {
+            font-size: x-small;
+        }
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    
+    .toolbar {
+    
+        &_title {
+        font-size: medium;
+        }
+        
+        &_b {
+            font-size: small;
+        }
+
+        &_bienvenido {
+            font-size: small;
+        }
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    
+    .toolbar {
+    
+        &_title {
+        font-size: large;
+        }
+        
+        &_b {
+            font-size: medium;
+        }
+
+        &_bienvenido {
+            font-size: medium;
+        }
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+    .toolbar {
+    
+        &_title {
+        font-size: large;
+        }
+        
+        &_b {
+            font-size: medium;
+        }
+
+        &_bienvenido {
+            font-size: medium;
+        }
+    }
+}

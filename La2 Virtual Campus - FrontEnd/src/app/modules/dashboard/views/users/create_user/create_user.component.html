@@ -1,0 +1,53 @@
+<fte-navbar></fte-navbar>
+
+<div class="createUser_BackButton">
+    <button type="button" mat-raised-button color="primary" routerLink="/dashboard/index_user">Go Back</button>
+</div>
+
+<article class="createUser">
+
+    <form [formGroup]="formCreateUser" class="createUser_form">
+
+        <h1 class="createUser_titulo">Create a New User</h1>
+        
+        <mat-form-field appearance="outline" class="createUser_input">
+            <mat-label>User Name</mat-label>
+            <input matInput type="text" formControlName="name" placeholder="User Name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="createUser_input">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="Email">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="createUser_input">
+            <mat-label>Document Number</mat-label>
+            <input matInput type="number" formControlName="dni" placeholder="Document">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="createUser_input">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        
+        <ng-container *ngIf="true">
+                <mat-form-field appearance="outline" class="createUser_select">
+                    <mat-label>User Role</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="role" formControlName="role">
+                        <mat-option *ngFor="let roles of role" [value]="roles.value" class="createUser_role">
+                        {{roles.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+        </ng-container>
+        
+        <button (click)="newUser()" type="submit" mat-raised-button color="warn" class="createUser_button">Create</button>
+    
+    </form>
+
+</article>
+
+<fte-footer></fte-footer>

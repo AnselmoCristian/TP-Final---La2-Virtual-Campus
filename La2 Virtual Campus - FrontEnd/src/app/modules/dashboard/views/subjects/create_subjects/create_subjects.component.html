@@ -1,0 +1,34 @@
+<fte-navbar></fte-navbar>
+
+<div class="createSubject_BackButton">
+    <button type="button" mat-raised-button color="primary" routerLink="/dashboard/index_subjects">Go Back</button>
+</div>
+
+<article class="createSubject">
+
+    <form [formGroup]="formCreateSubject" class="createSubject_form">
+
+        <h1 class="createSubject_titulo">Create a New Subject</h1>
+        
+        <mat-form-field appearance="outline" class="createSubject_input">
+            <mat-label>Subject Name</mat-label>
+            <input matInput type="text" formControlName="name" placeholder="User Name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="createSubject_input">
+            <mat-label>Subject Quota</mat-label>
+            <input matInput type="number" formControlName="quota" placeholder="quota">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="createSubject_input">
+            <mat-label>Subject registered</mat-label>
+            <input matInput type="number" formControlName="registered" placeholder="registered">
+        </mat-form-field>
+        
+        <button (click)="newSubject()" type="submit" mat-raised-button color="warn" class="createSubject_button">Create</button>
+    
+    </form>
+
+</article>
+
+<fte-footer></fte-footer>

@@ -1,0 +1,95 @@
+.contact {
+
+    margin: auto;
+    margin-top: 3rem;
+
+    width: 600px;
+    margin-bottom: 21.75rem;
+    
+    &_titulo {
+        margin-bottom: 3rem;
+        text-align: center;
+        font-size: xx-large;
+    }
+
+    &_input {
+        width: 100%;
+    }
+
+    &_textArea {
+        width: 100%;
+    }
+
+    &_button {
+        width: 100%;
+        height: 3rem;
+    }
+
+    &_buttonB {
+        margin-left: 1rem;
+        margin-top: 1rem;
+    }
+
+    &_paragraph {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 3rem;
+    }
+}
+
+//----------------------------------------------------------------------------
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    .contact {
+        margin-top: 3rem;
+    
+        width: 325px;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+    .contact {
+        margin-top: 3rem;
+    
+        width: 400px;
+        margin-bottom: 1rem;
+    }   
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    .contact {
+        margin-top: 3rem;
+    
+        width: 450px;
+        margin-bottom: 1rem;
+    }   
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+    .contact {
+        margin-top: 4rem;
+    
+        width: 600px;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+    .contact {
+        margin-top: 4rem;
+    
+        width: 600px;
+        margin-bottom: 3rem;
+    }   
+}

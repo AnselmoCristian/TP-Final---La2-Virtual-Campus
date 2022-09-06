@@ -1,0 +1,87 @@
+.table_table {
+    width: 100%;
+}
+
+.toolbar_a{
+    font-size: large;
+}
+
+.table {
+    margin: 8rem;
+    margin-top: 4rem;
+    margin-bottom: 48.3vh;
+
+    &_button_A {
+        margin: 3rem;
+        display: flex;
+    }
+
+    &_button {
+        margin: 1rem;
+    }
+
+    &_button_C {
+        margin: 3rem;
+    }
+}
+
+
+//---------------------------------------------------
+
+//----------------------------------------------------------------------------
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    .table {
+        margin: 1rem;
+        margin-top: 3rem;
+        margin-bottom: 12.3vh;
+    }
+    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+    .table {
+        margin: 3rem;
+        margin-top: 3rem;
+        margin-bottom: 12.3vh;
+    }
+   
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    .table {
+        margin: 3rem;
+        margin-top: 3rem;
+        margin-bottom: 12.3vh;
+    }
+   
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+    
+
+    .table {
+        margin: 4rem;
+        margin-top: 4rem;
+        margin-bottom: 12.3vh;
+    }
+   
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+    .table {
+        margin: 8rem;
+        margin-top: 4rem;
+        margin-bottom: 48.3vh;
+        }
+    }
