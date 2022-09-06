@@ -9,7 +9,6 @@
 .table {
     margin: 8rem;
     margin-top: 4rem;
-    margin-bottom: 48.3vh;
 
     &_button_A {
         margin: 3rem;
@@ -36,7 +35,14 @@
     .table {
         margin: 1rem;
         margin-top: 3rem;
-        margin-bottom: 12.3vh;
+    }
+
+    th {
+        font-size: x-small;
+    }
+
+    td {
+        font-size: x-small;
     }
     
 }
@@ -47,7 +53,6 @@
     .table {
         margin: 3rem;
         margin-top: 3rem;
-        margin-bottom: 12.3vh;
     }
    
 }
@@ -58,7 +63,6 @@
     .table {
         margin: 3rem;
         margin-top: 3rem;
-        margin-bottom: 12.3vh;
     }
    
 }
@@ -71,7 +75,6 @@
     .table {
         margin: 4rem;
         margin-top: 4rem;
-        margin-bottom: 12.3vh;
     }
    
 }
@@ -82,6 +85,5 @@
     .table {
         margin: 8rem;
         margin-top: 4rem;
-        margin-bottom: 48.3vh;
         }
     }

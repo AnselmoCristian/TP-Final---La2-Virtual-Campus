@@ -4,22 +4,34 @@
 
 <article class="contact">
 
-    <h1 class="contact_titulo">Contact Us</h1>
+    <form [formGroup]="formContact" class="contact_form">
 
-    <p class="contact_paragraph">Do you have some recomendation or something else? Please contact us</p>
+        <h1 class="contact_titulo">Contact Us</h1>
+        <p class="contact_paragraph">Do you have some recomendation or something else? Please contact us</p>
 
-    <mat-form-field appearance="outline" class="contact_input">
-        <mat-label>Title</mat-label>
-        <input matInput>
-    </mat-form-field>
+        <mat-form-field appearance="outline" class="contact_input">
+            <mat-label>From: </mat-label>
+            <input matInput type="text" formControlName="from" placeholder="From: ">
+        </mat-form-field>
 
-    
-    <mat-form-field appearance="outline" class="contact_textArea">
-        <mat-label>Textarea</mat-label>
-        <textarea matInput></textarea>
-    </mat-form-field>
+        <mat-form-field appearance="outline" class="contact_input">
+            <mat-label>To: </mat-label>
+            <input matInput type="text" formControlName="to" placeholder="To: ">
+        </mat-form-field>
 
-    <button type="submit" mat-raised-button color="warn" class="contact_button">Send</button>
+        <mat-form-field appearance="outline" class="contact_input">
+            <mat-label>Subject: </mat-label>
+            <input matInput type="text" formControlName="subject" placeholder="Subject: ">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="contact_textArea">
+            <mat-label>Your text: </mat-label>
+            <textarea matInput type="text" formControlName="subject" placeholder="Subject: "></textarea>
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="warn" class="contact_button">Send</button>
+        
+    </form>
 
 </article>
 
