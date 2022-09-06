@@ -24,6 +24,8 @@ const unassingBody = '<b>Usted ha sido desasignado como profesor de la mteria<b>
 
 
 function sendMail(recept, subject, body){
+	if (!process.env.MAIL_USER || !process.env.MAIL_PASS)
+		return console.log('las variables de entono para el envio de mails no estan definidas');
 	transporter.sendMail({
 		from: '"Administracion campus"', // sender address
 		to: recept, // list of receivers
