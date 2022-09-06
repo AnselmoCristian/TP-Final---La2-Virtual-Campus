@@ -1,0 +1,44 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2020",
+    "module": "es2020",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    
+    "paths": {
+      //shared
+      "@fte/shared/modules": ["src/app/shared/modules/index.ts"],
+      "@fte/shared/guards":["src/app/shared/guards/index.ts"],
+      
+      //Auth
+      "@fte/auth/views": ["src/app/modules/auth/views/index.ts"],
+
+      //Dashboard
+      "@fte/dashboard/views": ["src/app/modules/dashboard/views/index.ts"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+} 
