@@ -45,10 +45,14 @@
 @media only screen and (max-width: 600px) {
 
     .createUser {
-        margin-top: 2rem;
+        margin-top: 1rem;
         
         &_form {
             width: 325px;
+        }
+
+        &_input {
+            height: 3.25rem;
         }
 
         &_BackButton {
@@ -68,6 +72,10 @@
             width: 425px;
         }
 
+        &_input {
+            height: 3rem;
+        }
+
         &_BackButton {
             margin: 1rem 3rem 0rem 1rem;
         }
@@ -79,12 +87,12 @@
 @media only screen and (min-width: 768px) {
 
     .createUser {
-        margin-top: 2rem;
+        margin-top: 1rem;
         
         &_form {
-            width: 525px;
+            width: 500px;
         }
-
+        
         &_BackButton {
             margin: 2rem 3rem 0rem 2rem;
         }
