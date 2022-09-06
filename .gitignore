@@ -1,0 +1,4 @@
+campus-backend/node_modules
+/.vscode
+campus-backend/package-lock.json
+campus-backend/.env
