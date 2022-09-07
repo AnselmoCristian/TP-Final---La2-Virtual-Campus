@@ -1,8 +1,6 @@
 require('dotenv').config();
 const { Matter } = require('../../database/models/index');
 const sequelize = require('sequelize');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 
 //API
 
