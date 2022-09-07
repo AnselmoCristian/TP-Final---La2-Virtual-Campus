@@ -12,7 +12,7 @@ const identifyById = async (req,res) => {
     console.log('identificando materia por el id: '+id);
 
     let matter = await Matter.findOne({ 
-        attributes: ['id', 'name', 'quota', 'registered']
+        attributes: ['id', 'name', 'quota', 'registered', 'contents']
     });
 
     console.log(matter);
@@ -92,7 +92,7 @@ const destroy = async (req,res) => {
     }
 };
 
-    const edit = async(req,res) => {
+const edit = async(req,res) => {
     const id = req.params.id;
     const body = req.body;
 
