@@ -12,7 +12,7 @@ const identifyById = async (req,res) => {
     Matter.findOne({ 
         attributes: ['id', 'name', 'quota', 'registered']
     }).then(matter =>{
-        if(!mmatter)
+        if(!matter)
             return res.status(404).json({'status':404, 'msg':'Materia no encontrada'});
 
         console.log(matter);
