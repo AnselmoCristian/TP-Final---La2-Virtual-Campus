@@ -273,7 +273,6 @@ const setPassword = async (req,res) => {
 
 module.exports = {
     identifyById,
-    search,
     register,
     login,
     destroy,
