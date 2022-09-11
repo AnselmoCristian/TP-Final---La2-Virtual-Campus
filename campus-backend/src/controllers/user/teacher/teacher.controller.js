@@ -48,7 +48,8 @@ const register = async (req,res) => {
         name: name,
         email: email,
         password: passwordHash,
-        dni: dni
+        dni: dni,
+        role:role
     }).then(user =>{
         console.log(user);
 
