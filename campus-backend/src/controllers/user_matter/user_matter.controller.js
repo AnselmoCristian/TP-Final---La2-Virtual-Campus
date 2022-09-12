@@ -2,7 +2,8 @@ require('dotenv').config();
 const { User_matter } = require('../../database/models/index');
 const { Matter } = require('../../database/models/index');
 const { User } = require('../../database/models/index');
-const sequelize = require('sequelize');
+const {sequelize, Sequelize} = require('../../database/models/index');
+const { QueryTypes } = require('sequelize');
 const jwt = require('jsonwebtoken');
 const Mail = require('../../config/mailer');
 
@@ -115,56 +116,28 @@ const cancelSubscription = async (req,res) => {
 const getStudentInscript = async (req, res) => {
 
     const id_matter = req.params.id_matter;
-    const pageAsNumber = Number.parseInt(req.query.page);
-    const page = 0, size = 10;
 
-    if (!Number.isNaN(pageAsNumber))
-        page = pageAsNumber;
-
-    console.log('Obteniendo el listado de las materias a las que estan asociada al usuario......');
-
-    const user_matter = await User_matter.findAndCountAll({
-        limit: size,
-        offset: page * size,
-        attributes: ['user_id', 'matter_id','note_1','note_2','note_3'],
-        where: { matter_id: id_matter }
-    });
-
-    console.log(user_matter);
-
-    console.log('Obteniendo detalles del listado de las matrias......');
-
-    const studentList = await Promise.all(
-        user_matter.rows.map(async (user) => {
-            const id = user.dataValues.user_id
-            const result = await User.findOne({
-                attributes: ['id', 'name', 'dni'],
-                where: { 
-                    id: id,
-                    role:'student'
-                }
-            });
-            result.dataValues.note_1 = user.dataValues.note_1;
-            result.dataValues.note_2 = user.dataValues.note_2;
-            result.dataValues.note_3 = user.dataValues.note_3;
-            return result;
-        })
-    );
-    
-    var filtered = studentList.filter(function(x) {
-        return x !== null;
-   });
-
-   console.log(filtered);
-
-    return res.status(200).json({
-        'status': 200,
-        content: filtered,
-        totalPages: Math.ceil(user_matter.count / size),
-        page,
-    });
+    try {
+        const inscriptedUsers = await sequelize.query(
+        `SELECT users.id, users.name, users.dni, user_matters.note_1, user_matters.note_2, user_matters.note_3
+         FROM user_matters
+         JOIN users ON users.id = user_matters.user_id
+         WHERE user_matters.matter_id = :matter_id AND users.role = 'student'`,
+        {
+            replacements: { matter_id: id_matter },
+            type: Sequelize.QueryTypes.SELECT
+        }
+      );
+        console.log(inscriptedUsers);
+        return res.status(200).json({
+            'status': 200,
+            content: inscriptedUsers,
+        });
+        
+    } catch (error) {
+        console.log(error.message);
+    }
 };
-
 
 
 const assignMatter = async (req,res) => {
