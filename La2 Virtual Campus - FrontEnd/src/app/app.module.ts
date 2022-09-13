@@ -14,10 +14,12 @@ import { ComponentsModule } from './shared/modules/components/components.module'
 import { ExternApiService } from './shared/sevices/externApi.service';
 
 import { InterceptorInterceptor } from './modules/dashboard/sevices/interceptor/interceptor.interceptor';
+import { SureComponent } from './shared/components/sure/sure.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SureComponent,
   ],
   imports: [
     BrowserModule,
