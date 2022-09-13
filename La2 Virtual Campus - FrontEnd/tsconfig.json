@@ -27,6 +27,7 @@
       //shared
       "@fte/shared/modules": ["src/app/shared/modules/index.ts"],
       "@fte/shared/guards":["src/app/shared/guards/index.ts"],
+      "@fte/shared/components":["src/app/shared/components/index.ts"],
       
       //Auth
       "@fte/auth/views": ["src/app/modules/auth/views/index.ts"],
