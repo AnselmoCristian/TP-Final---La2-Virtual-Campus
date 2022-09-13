@@ -1,45 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthGuard } from '@fte/shared/guards';
-import { EditPopUpComponent } from '../../../components/editPopUp/editPopUp.component';
-import { DashboardService } from '../../../sevices/dashboard.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthGuard } from '@fte/shared/guards';
+import { EditPopUpComponent } from '../../components/editPopUp/editPopUp.component';
+import { DashboardService } from '../../sevices/dashboard.service';
 
 @Component({
-  selector: 'fte-index-user',
-  templateUrl: './index_user.component.html',
-  styleUrls: ['./index_user.component.scss']
+  selector: 'fte-messages',
+  templateUrl: './messages.component.html',
+  styleUrls: ['./messages.component.scss']
 })
-
-//---------------------------------------------------------------------------------------------------
-export class IndexUserComponent {
+export class MessagesComponent {
 
   formSubjectsItems: FormSubjectsItem[] = [
 
-    {
-      colDef: 'role',
-      th: 'Role',
-      td: 'role',
-    },    
     {
       colDef: 'id',
       th: 'Id',
       td: 'id',
     },
     {
-      colDef: 'name',
-      th: 'Name',
-      td: 'name',
-    },{
       colDef: 'email',
       th: 'Email',
-      td: 'email',
+      td: 'email',    
     },
     {
-      colDef: 'dni',
-      th: 'DNI',
-      td: 'dni',
+      colDef: 'affair',
+      th: 'Affair',
+      td: 'affair',
+    },
+    {
+      colDef: 'message',
+      th: 'Message',
+      td: 'message',    
+    },
+    {
+      colDef: 'createdAt',
+      th: 'Date',
+      td: 'createdAt',
     },
   ];
 
@@ -50,9 +49,12 @@ export class IndexUserComponent {
 
   // Authorization var
   authorization!: any;
+
+  // var
+  filterById!: any;
   
   // Users Form
-  displayedColumns: String[] = ['role', 'id', 'name', 'email', 'dni', 'editButton'];
+  displayedColumns: String[] = ['email', 'affair', 'message', 'editButton' ];
   dataSource = new MatTableDataSource([]);
 
   //---------------------------------------------------------------------------------------------------
@@ -61,39 +63,18 @@ export class IndexUserComponent {
     // Traer role
     this.role = this._authGuard.getUserRole();
 
-    this.getUser();
-  }
-
-  //---------------------------------------------------------------------------------------------------
-
-  // PopUpButton
-  popUpEditUser(element: any): void {
-    const id = element.id;
-    const dialogRef = this._dialog.open(EditPopUpComponent, {
-      width: '400px',
-      data: element,
-    }).afterClosed().subscribe(
-      response => {      
-        if(response) {
-          const values = response;
-          const edit = this._dashboard.editUsers(id, values.name, values.email, values.dni, values.role).subscribe(
-            response => {
-              console.log(response);              
-              this.dataSource = new MatTableDataSource([]);
-              this.getUser();
-            }
-          )
-        }
-      });
+    this.getContactUs();
   }
 
   //---------------------------------------------------------------------------------------------------
   
+  pages!: any;
   // Get Users
-  getUser() {
-    this._dashboard.getAdmins().subscribe(
+  getContactUs() {
+    this._dashboard.getContactUs().subscribe(
       response => {
         this.dataSource = new MatTableDataSource(response.content);
+        this.pages = response.totalpages;
       }, error => {
         console.log(error);        
       }
@@ -106,6 +87,15 @@ export class IndexUserComponent {
   formSearch = new FormGroup({
     search: new FormControl('')
   });
+  
+  
+  
+  /* 
+  applyFilter(element: any) {
+    console.log(element);    
+    const filterValue = 'kkkkkkk';
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    } */
 
   applyFilter(event: Event) {
     const filterValue = (
@@ -117,10 +107,10 @@ export class IndexUserComponent {
       
   // Delete Button
   deleteUser(id: number) {   
-    this._dashboard.deleteUsers(id).subscribe(
+    this._dashboard.deleteContactUs(id).subscribe(
       response => {
         this.dataSource = new MatTableDataSource([]);
-        this.getUser();
+        this.getContactUs();
       }
     );
   }

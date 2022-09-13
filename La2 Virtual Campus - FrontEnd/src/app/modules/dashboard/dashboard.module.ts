@@ -13,8 +13,11 @@ import { CreateUserComponent,
   IndexUserComponent,
   CreateSubjectsComponent,
   IndexSubjectsComponent,
-  ContactUsComponent} from '@fte/dashboard/views';
-
+  ContactUsComponent,
+} from '@fte/dashboard/views';
+  
+  import { StudentsListComponent } from './views/UsersSubjects/studentsList/studentsList.component';
+  
 // Navbar
 import { NavbarComponent } from './components/navbar/navbar.component';
   
@@ -26,8 +29,11 @@ import { EditPopUpComponent } from './components/editPopUp/editPopUp.component';
 import { EditSubjectsPopUpComponent } from './components/editSubjectsPopUp/editSubjectsPopUp.component';
 import { EditCalifPopUpComponent } from './components/editCalifPopUp/editCalifPopUp.component';
 
-import { DashboardService } from './sevices/dashboard.service';
 // Service
+import { DashboardService } from './sevices/dashboard.service';
+import { MessagesComponent } from './views/messages/messages.component';
+import { TeachersListComponent } from './views/users/teachersList/teachersList.component';
+import { SubjectSubscritionComponent } from './views/UsersSubjects/subjectSubscription/subjectSubscription.component';
 
 const views = [
   // Views
@@ -35,11 +41,8 @@ const views = [
   IndexUserComponent,
   CreateSubjectsComponent,
   IndexSubjectsComponent,
-  CursadaComponent,
   ContactUsComponent,
-
-  // PopUp
-  EditPopUpComponent
+  CursadaComponent,
 ]
 
 @NgModule({
@@ -47,8 +50,13 @@ const views = [
     DashboardComponent,
     NavbarComponent,
     ...views,
+    EditPopUpComponent,
     EditSubjectsPopUpComponent,
     EditCalifPopUpComponent,
+    StudentsListComponent,
+    MessagesComponent,
+    TeachersListComponent,
+    SubjectSubscritionComponent,
   ],
   imports: [
     CommonModule,

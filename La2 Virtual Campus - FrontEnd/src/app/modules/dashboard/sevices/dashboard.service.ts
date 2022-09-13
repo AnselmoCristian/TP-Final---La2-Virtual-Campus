@@ -81,38 +81,79 @@ export class DashboardService {
   }
   //------------------------------------------------------------------
 
-  // PUTs
-
-   // Edit Users V2
-   editUsers(id: any, name: any, email: any, dni:any, role: any) {
+  // PUT Edit Users V2
+  editUsers(id: any, name: any, email: any, dni:any, role: any) {
     return this._http.put( `${this.API_URI}/admin/edit/${id}`, {name, email, dni, role} );
   }
+
+  //------------------------------------------------------------------ post("/assing/:id_matter
+
+  // Get Teacher's Subjects
+  getUsersSubjects():Observable<any>  {
+    return this._http.get( `${this.API_URI}/user_matter/assing` );
+  }
+
+  // Post Subject Assignement
+  postSubjectAssignement(id: any):Observable<any> {
+    return this._http.post( `${this.API_URI}/user_matter/assing/${id}`, { id } );
+  }   
+
+  //Delete Teacher Subject assign
+  deleteSubjectAssign(id: any):Observable<any> {
+    return this._http.delete( `${this.API_URI}/user_matter/assing/${id}`, id);
+  } 
+
+
   //------------------------------------------------------------------
 
+
+
+  // Contact US!!!
+
+  // POST Contact US
+  postContactUS(email: any, affair: any, message: any):Observable<any> {
+    return this._http.post( `${this.API_URI}/form/`, { email, affair, message } );
+  }  
+  
+  // GET Contact US
+  getContactUs():Observable<any>  {
+    return this._http.get( `${this.API_URI}/form/` );
+  }
+
+  // Delete 1 Message of the Contact Us
+  deleteContactUs(id: any) {
+    return this._http.delete( `${this.API_URI}/form/${id}` );
+  }
+
+  //------------------------------------------------------------------
+  
+
+
+
+
   //------------------------------------------------------------------
 
-//------------------------------------------------------------------------------------------------------------------
+  // Get Student List Inscripted on a Specific Subject
+  getStudentsInscriptedOnaSubject(id: any):Observable<any> {
+    return this._http.get( `${this.API_URI}/user_matter/inscript/${id} `);
+  }
+
+  //------------------------------------------------------------------
+
+  // Get Student's Subjects
+  getStudentSubjects():Observable<any> {
+    return this._http.get( `${this.API_URI}/user_matter/subscribe `);
+  }
+
+  //------------------------------------------------------------------
 
 
 
+  //------------------------------------------------------------------------------------------------------------------
+  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Edit users /*
+  // Edit Users
   putEmail(id: any, email: any, role: any):Observable<any> {
     return this._http.put( `${this.API_URI}/${role}/set_email/`, { email } );
   }
@@ -125,23 +166,45 @@ export class DashboardService {
     return this._http.put( `${this.API_URI}/${role}/set_name/`, { name } );
   }
 
-  /*  
-  putPassword(id: any, password: any) {
-    return this._http.put( `${this.API_URI}/set_password`, password);
-  } */
-    
-    //------------------------------------------------------------------
+  //------------------------------------------------------------------
+  
+  // Subscribe to a New Subject
+  postSubscribeToSubject( id_matter: any ):Observable<any> {
+    return this._http.post( `${this.API_URI}/user_matter/subscribe/${id_matter}`, { id_matter } );
+  }
+  
+  // Unsubscribe to a Subject
+  deleteUnsubscribeToSubject(id: any):Observable<any> {
+    return this._http.delete( `${this.API_URI}/user_matter/subscribe/${id}`, id);
+  } 
 
-    getUserSubjects(id:any):Observable<any>  {
-      return this._http.get( `${this.API_URI}/user_matter/inscript/` );
-    }
+  //------------------------------------------------------------------
+  // Edit Califications PUTs
 
-    //------------------------------------------------------------------
-    //POSTs
+  putNota1(id_user: any, id_matter: any, note_1: any):Observable<any> {
+    return this._http.put( `${this.API_URI}/user_matter/set_note1/${id_user}/${id_matter}`, { id_user, id_matter, note:note_1 } );
+  }
 
-    postUserSubjects(id: any):Observable<any> {
-      return this._http.post( `${this.API_URI}/user_matter/`, id );
-    }
+  putNota2(id_user: any, id_matter: any, note_2: any):Observable<any> {
+    return this._http.put( `${this.API_URI}/user_matter/set_note2/${id_user}/${id_matter}`, { id_user, id_matter, note:note_2 } );
+  }
+
+  putNota3(id_user: any, id_matter: any, note_3: any):Observable<any> {
+    return this._http.put( `${this.API_URI}/user_matter/set_note3/${id_user}/${id_matter}`, { id_user, id_matter, note:note_3 } );
+  }
+
+  //------------------------------------------------------------------
+  
+  // Search by id
+  getFormIdentifyById(id: any):Observable<any> {
+    return this._http.get( `${this.API_URI}/form/${id}`, id );
+  }
+
+  //------------------------------------------------------------------
+  
+  
+
+  //------------------------------------------------------------------
 }
 
 export interface dashboard {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../sevices/auth.service';
@@ -8,12 +8,11 @@ import { AuthService } from '../../sevices/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   formLogin = new FormGroup({
     document: new FormControl('', { validators: [ Validators.required] }),
     password: new FormControl('', { validators: [ Validators.required] }),
-    entity: new FormControl('', { validators: [ Validators.required] }),
   });
   
   hide = true;
@@ -21,13 +20,10 @@ export class LoginComponent implements OnInit {
   constructor(private _auth: AuthService, private _router: Router) {
   }
 
-  ngOnInit(): void {
-  }
-
   onSubmit() {
-    const {document, password, entity} = this.formLogin.value;
-    console.log(this.formLogin.value);
-    this._auth.login(entity, document, password).subscribe(
+    const {document, password} = this.formLogin.value;
+
+    this._auth.loginAdmin(document, password).subscribe(
       response => {
         const {user, token} = response;
         localStorage.setItem('user', JSON.stringify(user));
@@ -35,7 +31,28 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('isLogged', 'true')
         this._router.navigate(['/dashboard'])
       }, error => {
-        console.log(error);
+      }
+    )
+
+    this._auth.loginTeacher(document, password).subscribe(
+      response => {
+        const {user, token} = response;
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('token', token);
+        localStorage.setItem('isLogged', 'true')
+        this._router.navigate(['/dashboard'])
+      }, error => {
+      }
+    )
+
+    this._auth.loginStudent(document, password).subscribe(
+      response => {
+        const {user, token} = response;
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('token', token);
+        localStorage.setItem('isLogged', 'true')
+        this._router.navigate(['/dashboard'])
+      }, error => {
       }
     )
   }

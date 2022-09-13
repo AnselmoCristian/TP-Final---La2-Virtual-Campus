@@ -1,59 +1,70 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'fte-editCalifPopUp',
   templateUrl: './editCalifPopUp.component.html',
   styleUrls: ['./editCalifPopUp.component.scss']
 })
-export class EditCalifPopUpComponent implements OnInit {
 
-  // Inputs
-  formEditUser = new FormGroup({
-    name: new FormControl('', { validators: [ Validators.required ] }),
-    email: new FormControl('', { validators: [ Validators.required, Validators.email ] }),
-    dni: new FormControl('', { validators: [ Validators.required ] }),
-    password: new FormControl('', { validators: [ Validators.required ] }),
-    entity: new FormControl('', { validators: [ Validators.required ] })
-  });
+//---------------------------------------------------------------------------------------------------
+export class EditCalifPopUpComponent {
 
-  hide = true;
-
-  // Input Select
-  selectedValue!: string;
-
-  roles: Role[] = [
-    {value: 'student', viewValue: 'Student'},
-    {value: 'admin', viewValue: 'Admin'},
-    {value: 'teacher', viewValue: 'Teacher'},
+  formEditCalificationsItems: FormEditCalificationsItem[] = [
+    {
+      label:'Calification N°1',
+      name: 'note_1',
+      placeHolder: 'Calification N°1',
+    },
+    {
+      label:'Calification N°2',
+      name: 'note_2',
+      placeHolder: 'Calification N°2',
+    },
+    {
+      label:'Calification N°3',
+      name: 'note_3',
+      placeHolder: 'Calification N°3',
+    },
   ];
 
-  constructor(private dialog: MatDialog) { }
-  
-  ngOnInit(): void {
+  //---------------------------------------------------------------------------------------------------
 
+  // Inputs form
+  formEditCalifications = new FormGroup({
+    note_1: new FormControl(''),
+    note_2: new FormControl(''),
+    note_3: new FormControl(''),
+  });
+
+  //---------------------------------------------------------------------------------------------------
+
+  // Constructor
+  constructor( public _dialogRef: MatDialogRef<EditCalifPopUpComponent>, @Inject(MAT_DIALOG_DATA) public data: any ) {
+
+    this.formEditCalifications.patchValue({
+      note_1: this.data.note_1,
+      note_2: this.data.note_2,
+      note_3: this.data.note_3,
+    });
   }
+
+  //---------------------------------------------------------------------------------------------------
 
   // Cancel Button
   cancelButton() {
-    const dialogRef = this.dialog.closeAll();
+    this._dialogRef.close();
   }
-
+  
   // Submit Button
-  onSubmit() {
-    console.log(this.formEditUser.value);
-    return
-    
-    if (this.formEditUser.valid) {
-      console.log(this.formEditUser.value);
-    } else {
-      
-    }
+  editCalificationsButton() {
+    this._dialogRef.close(this.formEditCalifications.value);
   }
 }
 
-interface Role {
-  value: string;
-  viewValue: string;
+interface FormEditCalificationsItem {
+  label: string;
+  name: string;
+  placeHolder: string;
 }

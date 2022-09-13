@@ -14,8 +14,20 @@ export class AuthService {
     //POSTs
     //------------------------------------------------------------------
 
-    login(entity: any, dni: any, password: any):Observable<any> {
-      return this._http.post( `${this.API_URI}/${entity}/login/`, {dni, password} )
+    login(dni: any, password: any):Observable<any> {
+      return this._http.post( `${this.API_URI}/admin/login/`, {dni, password} )
+    }
+
+    loginAdmin(dni: any, password: any):Observable<any> {
+      return this._http.post( `${this.API_URI}/admin/login/`, {dni, password} )
+    }
+
+    loginTeacher(dni: any, password: any):Observable<any> {
+      return this._http.post( `${this.API_URI}/teacher/login/`, {dni, password} )
+    }
+
+    loginStudent(dni: any, password: any):Observable<any> {
+      return this._http.post( `${this.API_URI}/student/login/`, {dni, password} )
     }
     
     // Registers

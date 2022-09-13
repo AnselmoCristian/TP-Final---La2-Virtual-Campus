@@ -10,3 +10,4 @@ export * from './subjects/index_subjects/index_subjects.component'
 export * from './contact_us/contact_us.component'
 
 // Cursada
+export * from './cursada/cursada.component'

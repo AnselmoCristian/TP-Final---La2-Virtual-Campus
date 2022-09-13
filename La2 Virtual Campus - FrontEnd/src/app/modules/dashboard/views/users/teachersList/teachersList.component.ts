@@ -1,45 +1,46 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { AuthGuard } from '@fte/shared/guards';
 import { EditPopUpComponent } from '../../../components/editPopUp/editPopUp.component';
 import { DashboardService } from '../../../sevices/dashboard.service';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'fte-index-user',
-  templateUrl: './index_user.component.html',
-  styleUrls: ['./index_user.component.scss']
+  selector: 'fte-teachersList',
+  templateUrl: './teachersList.component.html',
+  styleUrls: ['./teachersList.component.scss']
 })
 
 //---------------------------------------------------------------------------------------------------
-export class IndexUserComponent {
+export class TeachersListComponent {
 
-  formSubjectsItems: FormSubjectsItem[] = [
+  formTeachersItems: FormTeachersItem[] = [
 
-    {
-      colDef: 'role',
-      th: 'Role',
-      td: 'role',
-    },    
     {
       colDef: 'id',
-      th: 'Id',
+      th: 'N° Id',
       td: 'id',
     },
     {
       colDef: 'name',
-      th: 'Name',
+      th: 'Names',
       td: 'name',
-    },{
+    },
+    {
       colDef: 'email',
-      th: 'Email',
+      th: 'Emails',
       td: 'email',
     },
     {
-      colDef: 'dni',
-      th: 'DNI',
-      td: 'dni',
+      colDef: 'createdAt',
+      th: 'Creation Date',
+      td: 'createdAt',
+    },
+    {
+      colDef: 'updatedAt',
+      th: 'Upadated Date',
+      td: 'updatedAt',
     },
   ];
 
@@ -52,7 +53,7 @@ export class IndexUserComponent {
   authorization!: any;
   
   // Users Form
-  displayedColumns: String[] = ['role', 'id', 'name', 'email', 'dni', 'editButton'];
+  displayedColumns: String[] = ['name', 'email', 'createdAt', 'updatedAt'];
   dataSource = new MatTableDataSource([]);
 
   //---------------------------------------------------------------------------------------------------
@@ -61,37 +62,14 @@ export class IndexUserComponent {
     // Traer role
     this.role = this._authGuard.getUserRole();
 
-    this.getUser();
-  }
-
-  //---------------------------------------------------------------------------------------------------
-
-  // PopUpButton
-  popUpEditUser(element: any): void {
-    const id = element.id;
-    const dialogRef = this._dialog.open(EditPopUpComponent, {
-      width: '400px',
-      data: element,
-    }).afterClosed().subscribe(
-      response => {      
-        if(response) {
-          const values = response;
-          const edit = this._dashboard.editUsers(id, values.name, values.email, values.dni, values.role).subscribe(
-            response => {
-              console.log(response);              
-              this.dataSource = new MatTableDataSource([]);
-              this.getUser();
-            }
-          )
-        }
-      });
+    this.getTeachers();
   }
 
   //---------------------------------------------------------------------------------------------------
   
   // Get Users
-  getUser() {
-    this._dashboard.getAdmins().subscribe(
+  getTeachers() {
+    this._dashboard.getTeachers().subscribe(
       response => {
         this.dataSource = new MatTableDataSource(response.content);
       }, error => {
@@ -114,19 +92,9 @@ export class IndexUserComponent {
     }
 
   //---------------------------------------------------------------------------------------------------
-      
-  // Delete Button
-  deleteUser(id: number) {   
-    this._dashboard.deleteUsers(id).subscribe(
-      response => {
-        this.dataSource = new MatTableDataSource([]);
-        this.getUser();
-      }
-    );
-  }
 }
 
-interface FormSubjectsItem {
+interface FormTeachersItem {
   colDef: string;
   th: string;
   td: string;

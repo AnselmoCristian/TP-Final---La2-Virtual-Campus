@@ -1,28 +1,30 @@
 <fte-navbar></fte-navbar>
-    
-<button type="button" mat-raised-button color="primary" routerLink="/dashboard" class="contact_buttonB">Go Back</button>
+
+<!-- Go Back Button -->    
+<button type="button" mat-raised-button color="primary" routerLink="/dashboard" class="contact_buttonB"><mat-icon>arrow_back</mat-icon></button>
 
 <article class="contact">
-
+    <!-- Form -->
     <form [formGroup]="formContact" class="contact_form">
 
         <h1 class="contact_titulo">Contact Us</h1>
         <p class="contact_paragraph">Do you have some recomendation or something else? Please contact us</p>
 
-        <mat-form-field appearance="outline" *ngFor="let item of formItems" class="contact_input">
+        <!-- Inputs Form -->
+        <mat-form-field appearance="outline" *ngFor="let item of contactUsItems" class="contact_input">
             <mat-label>{{item.label}}</mat-label>
             <input matInput formControlName={{item.name}} placeholder={{item.placeHolder}}>
         </mat-form-field>
-        
+
+        <!-- Text Area -->        
         <mat-form-field appearance="outline" class="contact_textArea">
-            <mat-label>Your text: </mat-label>
-            <textarea matInput formControlName="text" placeholder="Subject: "></textarea>
+            <mat-label>Your Menssaege: </mat-label>
+            <textarea matInput formControlName="message" placeholder="Menssaege: "></textarea>
         </mat-form-field>
-
-        <button type="submit" mat-raised-button color="warn" class="contact_button">Send</button>
         
+        <!-- Send wButton -->
+        <button mat-raised-button type="submit" (click)="onSubmit()" color="warn" class="contact_button">Send</button>
     </form>
-
 </article>
 
 <fte-footer></fte-footer>

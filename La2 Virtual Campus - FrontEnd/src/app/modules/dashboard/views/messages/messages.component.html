@@ -1,12 +1,12 @@
-<article>
-
+<fte-navbar></fte-navbar>
+ 
   <mat-drawer-container class="example-container">
     <mat-drawer #drawer class="example-sidenav" mode="push">
-      <!-- Edit button -->
-      <a mat-menu-item routerLink="/dashboard/">Audit Users</a>
-      <!-- Delete button -->
+      
+      <a mat-menu-item routerLink="/dashboard">Audit Users</a>
+      
       <a mat-menu-item routerLink="/dashboard/index_subjects">Audit Subjects</a>
-      <!-- Messages -->
+      
       <a mat-menu-item routerLink="/dashboard/messages">Messages</a>
     </mat-drawer>
 
@@ -16,21 +16,20 @@
 
     <section class="table">
       
-      <h1><span class="table_lista" *ngIf="role === 'admin'">Admin's </span> <span class="table_lista">Users List</span></h1>
+      <h1><span class="table_lista" *ngIf="role === 'admin'">Admin's </span> <span class="table_lista">message's List</span></h1>
 
       <!-- Filter Input Form -->
       <article class="search">
         <form [formGroup]="formSearch" class="search_form">
             
-            <mat-form-field appearance="outline" class="search_input">
+            <mat-form-field appearance="outline" class="search_input_lista">
                 <mat-label>Filter: </mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="Filter By Id">
             </mat-form-field>
         </form>
       </article>
-
-      <!-- Top buttons -->
-      <button mat-raised-button color="primary" routerLink="/dashboard/create_user" class="table_button_A" *ngIf="role === 'admin'">Create New User</button>
+      
+      <!-- ---------------------------------------------------------------------------------------------- -->
 
       <!-- Table start -->
       <table mat-table [dataSource]="dataSource" class="table_table">
@@ -43,20 +42,12 @@
         
         <!-- Edit User -->
         <ng-container matColumnDef="editButton" *ngIf="role === 'admin'">
-          <th mat-header-cell *matHeaderCellDef><span *ngIf="role === 'admin'">Options</span></th>
+          <th mat-header-cell *matHeaderCellDef><span *ngIf="role === 'admin'">Delete</span></th>
 
           <td mat-cell *matCellDef="let element">
-            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-              <mat-icon>more_vert</mat-icon>
+            <button mat-icon-button (click)="deleteUser(element.id)">
+              <mat-icon>delete_forever</mat-icon>
             </button>
-            <mat-menu #menu="matMenu">
-              <!-- Edit button -->
-              <button mat-menu-item (click)="popUpEditUser(element)">Edit User</button>
-              <!-- Delete button -->
-              <button mat-menu-item (click)="deleteUser(element.id)">Delete User</button>              
-              <!-- Delete button -->
-              <button mat-menu-item (click)="deleteUser(element.id)" *ngIf="element.role === 'teacher'">Asign Subject</button>
-            </mat-menu>
           </td>
 
         </ng-container>
@@ -68,4 +59,5 @@
     </section>
 
   </mat-drawer-container>
-</article>
+
+<fte-footer></fte-footer>

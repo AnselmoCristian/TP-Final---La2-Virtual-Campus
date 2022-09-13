@@ -1,27 +1,17 @@
 <article class="editSubjects">
-
+    <!-- Form -->
     <form [formGroup]="formEditSubjects" class="editSubjects_form">
 
         <h1 class="editSubjects_titulo">Edit a Subject</h1>
-        
-        <mat-form-field appearance="outline" class="editSubjects_input">
-            <mat-label>Subject Name</mat-label>
-            <input matInput type="text" formControlName="name" placeholder="Subject Name">
-        </mat-form-field>
 
-        <mat-form-field appearance="outline" class="editSubjects_input">
-            <mat-label>Subject Quota</mat-label>
-            <input matInput type="email" formControlName="quota" placeholder="Quota">
+        <!-- Inputs Form -->
+        <mat-form-field *ngFor="let item of formEditSubjectsItems" appearance="outline" class="editSubjects_input">
+            <mat-label>{{item.label}}</mat-label>
+            <input matInput formControlName={{item.name}} placeholder={{item.placeHolder}}>
         </mat-form-field>
         
-        <mat-form-field appearance="outline" class="editSubjects_input">
-            <mat-label>Subject Registered</mat-label>
-            <input matInput type="number" formControlName="registered" placeholder="Registered">
-        </mat-form-field>
-        
-        <button (click)="cancelButton()" type="submit" mat-raised-button color="primary" class="editSubjects_button">Cancel</button>
-        <button (click)="editSubject()" type="submit" mat-raised-button color="warn" class="editSubjects_button">Edit</button>
-    
+        <!-- Buttons -->        
+        <button (click)="cancelButton()" type="button" mat-raised-button color="primary" class="editSubjects_button">Cancel</button>
+        <button (click)="editSubjectButton()" type="submit" mat-raised-button color="warn" class="editSubjects_button">Edit</button>    
     </form>
-
 </article>

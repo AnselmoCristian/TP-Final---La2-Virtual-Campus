@@ -1,0 +1,59 @@
+<fte-navbar></fte-navbar>
+
+    <article class="table">
+
+      <h1><span *ngIf="role === 'teacher'">Assignements </span><span *ngIf="role === 'student'">Subscriptions </span><span class="table_lista">Subjects List</span></h1>
+
+      <!-- Filter Input Form -->
+      <article class="search">
+        <form [formGroup]="formSearch" class="search_form">
+            
+            <mat-form-field appearance="outline" class="search_input">
+                <mat-label>Filter: </mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+            </mat-form-field>
+        </form>
+      </article>
+
+      <!-- Top buttons -->
+      <button type="button" mat-raised-button color="warn" routerLink="/dashboard"><mat-icon>arrow_back</mat-icon></button>
+      <button type="button" mat-raised-button color="primary" routerLink="/dashboard/create_subjects" class="table_button_A" *ngIf="role === 'admin'">Crete New Subject</button>
+      
+      <table mat-table [dataSource]="dataSource" class="table_table">
+        
+        <!-- Start Table -->
+        <ng-container *ngFor="let item of formSubjectsItems" matColumnDef={{item.colDef}}>
+          <th mat-header-cell *matHeaderCellDef>{{item.th}}</th>
+          <td mat-cell *matCellDef="let element"> {{element[item.td]}} </td>
+        </ng-container>
+        
+        <!-- Edit Subjects Menu Button -->
+        <ng-container matColumnDef="editButton" *ngIf="role === 'student'">
+          <th mat-header-cell *matHeaderCellDef><span *ngIf="role === 'student'">Options</span></th>
+        
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button *ngIf="role === 'student'" aria-label="Example icon-button with a menu" (click)="postSubscriptionSubject(element.id)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        
+        <!-- Edit Subjects Menu Button -->
+        <ng-container matColumnDef="editButton" *ngIf="role === 'teacher'">
+          <th mat-header-cell *matHeaderCellDef><span *ngIf="role === 'teacher'">Options</span></th>
+        
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button *ngIf="role === 'teacher'" aria-label="Example icon-button with a menu" (click)="postAssignSubject(element.id)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </td>
+
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <!-- End Table -->
+      </table>
+    </article>
+
+<fte-footer></fte-footer>

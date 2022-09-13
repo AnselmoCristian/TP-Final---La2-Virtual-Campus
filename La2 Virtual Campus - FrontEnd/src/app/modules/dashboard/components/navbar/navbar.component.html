@@ -1,7 +1,7 @@
 <mat-toolbar class="toolbar" color="warn">
     <mat-toolbar-row class="toolbar_content" class="mat-elevation-z1">
       <!-- <a mat-button class="toolbar_a" routerLink="/">Campus virtual LaSegunda</a> -->
-      <span class="toolbar_title" routerLink="/dashboard">La2 virtual Campus</span>
+      <button mat-button class="toolbar_title" routerLink="/dashboard">L2 virtual Campus</button>
       
       <span class="example-spacer"></span>
 
@@ -11,10 +11,11 @@
         </li>
       </ul>      
 
-      <button mat-button [matMenuTriggerFor]="beforeMenu" class="toolbar_bienvenido">Bienvenido {{ userNavName }}</button>
+      <button mat-button [matMenuTriggerFor]="beforeMenu" class="toolbar_bienvenido">Welcome {{ userNavName }}</button>
 
       <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item (click)="logOut()"> Log Out </button>
+        <button mat-menu-item (click)="messages()" *ngIf="role == 'admin'">Messages</button>
+        <button mat-menu-item (click)="logOut()">Log Out</button>
       </mat-menu>
 
       

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DashboardService } from '../../../sevices/dashboard.service';
 import { Router } from '@angular/router';
@@ -8,10 +8,31 @@ import { Router } from '@angular/router';
   templateUrl: './create_user.component.html',
   styleUrls: ['./create_user.component.scss']
 })
-export class CreateUserComponent implements OnInit {
 
-  // Inputs
+//---------------------------------------------------------------------------------------------------
+export class CreateUserComponent {
 
+  formCreateUserItems: FormCreateUserItem[] = [
+    {
+      label:'User Name',
+      name: 'name',
+      placeHolder: 'User Name',
+    },
+    {
+      label:'Email',
+      name: 'email',
+      placeHolder: 'Email',
+    },
+    {
+      label:'Document Number',
+      name: 'dni',
+      placeHolder: 'Document',
+    },
+  ];
+
+  //---------------------------------------------------------------------------------------------------
+
+  // Inputs form
   formCreateUser = new FormGroup({
     name: new FormControl('', { validators: [ Validators.required ] }),
     email: new FormControl('', { validators: [ Validators.required, Validators.email ] }),
@@ -20,33 +41,32 @@ export class CreateUserComponent implements OnInit {
     role: new FormControl('', {validators: [Validators.required ] })
   });
 
+  //Dont Delete
   hide = true;
 
   // Input Select
-
   selectedValue!: string;
 
   role: Role[] = [
-    {value: 'student', viewValue: 'Student'},
     {value: 'admin', viewValue: 'Admin'},
     {value: 'teacher', viewValue: 'Teacher'},
+    {value: 'student', viewValue: 'Student'},
   ];
-  
-  
+
+  //---------------------------------------------------------------------------------------------------
+  // Constructor  
   constructor(private _dashboard: DashboardService, private _router: Router) { }
 
-  ngOnInit(): void {
-    console.log(this.formCreateUser.value);    
-  }
+  //---------------------------------------------------------------------------------------------------
 
+  // Create Button
   newUser() {
     const {name, email, dni, password, role} = this.formCreateUser.value;
-    console.log(this.formCreateUser.value);
-    
+    console.log(name, email, dni, password, role);
     
     this._dashboard.createNewUser(name, email, dni, password, role).subscribe(
       response => {
-        this._router.navigate(['/dashboard/index_user'])
+        this._router.navigate(['/dashboard'])
       }, error => {
         console.log(error);
       }
@@ -57,4 +77,10 @@ export class CreateUserComponent implements OnInit {
 interface Role {
   value: string;
   viewValue: string;
+}
+
+interface FormCreateUserItem {
+  label: string;
+  name: string;
+  placeHolder: string;
 }

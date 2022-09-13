@@ -2,93 +2,47 @@
 
 <!-- Admin's Home  -->
 
-<ng-container class="table" *ngIf="role === 'admin'">
-  <article class="table">
-
-    <h1><span class="table_lista">Admin's </span> <span class="table_lista">Panel Options</span></h1>
-
-    <!-- Table start -->
-    
-    <table mat-table [dataSource]="dataSource" class="table_table">
-
-      <!-- Id Option -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>Options</th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
-
-      <!-- Audit User -->
-      <ng-container matColumnDef="auditUsersButton">
-        <th mat-header-cell *matHeaderCellDef>Audit Users</th>
-        <td mat-cell *matCellDef="let element"> <button mat-raised-button routerLink="/dashboard/index_user" color="warn"> Audit Users </button> </td>
-      </ng-container>
-
-      <!-- Audit Subjects -->
-      <ng-container matColumnDef="auditSubjectstButton">
-        <th mat-header-cell *matHeaderCellDef>Audit Subjects</th>
-        <td mat-cell *matCellDef="let element"> <button mat-raised-button routerLink="/dashboard/index_subjects" color="primary"> Audit Subjects </button> </td>
-      </ng-container>
-    
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
+<ng-container class="table">
+ 
+  <article style="width:100%; height: 90%;" *ngIf="this.role === 'admin'">
+    <fte-index-user></fte-index-user>  
   </article>
 
 </ng-container>
 
-<!-- Teacher's Home -->
+<!-- Student's Home -->
 
-<ng-container *ngIf="role === 'student'">
+<ng-container *ngIf="this.role === 'student'">
   <article class="table">
 
     <h1 class="table_lista">My Courses</h1>
 
-    <article class="search" *ngIf="false">
+    <article class="search" *ngIf="true">
       <form [formGroup]="formSearch" class="search_form">
           
           <mat-form-field appearance="outline" class="search_input">
               <mat-label>Filter: </mat-label>
-              <input matInput placeholder="Filter: ">
+              <input matInput (keyup)="applyFilter2($event)" placeholder="Filter">
           </mat-form-field>
-      
       </form>
-  </article>
-  
-    <!-- Table start -->
-    
-    <button type="button" mat-raised-button color="primary" routerLink="/dashboard/create_subjects" class="table_button_C" *ngIf="false">Subscribe to New Subject</button>
+    </article>
 
+    <!-- Subscribe to Subject Button -->     
+    <button type="button" mat-raised-button color="primary" routerLink="/dashboard/subjects_subscription" class="table_button_C" *ngIf="this.role === 'student'">Subscribe</button>
+
+    <!-- Table start -->   
     <table mat-table [dataSource]="dataSource2" class="table_table">
-
-      <!-- N° Id -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>N° Id</th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
     
-      <!-- Subject's Name -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Subject's Name</th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
-
-      <!-- Subject's Quota -->
-      <ng-container matColumnDef="quota">
-        <th mat-header-cell *matHeaderCellDef>Subject's Quota</th>
-        <td mat-cell *matCellDef="let element"> {{element.quota}} </td>
-      </ng-container>
-
-      <!-- Subject's Registered -->
-      <ng-container matColumnDef="registered">
-        <th mat-header-cell *matHeaderCellDef>Subject's Quota</th>
-        <td mat-cell *matCellDef="let element"> {{element.registered}} </td>
+      <!-- Start Table -->
+      <ng-container *ngFor="let item of formStudentsItems" matColumnDef={{item.colDef}}>
+        <th mat-header-cell *matHeaderCellDef>{{item.th}}</th>
+        <td mat-cell *matCellDef="let element"> {{element[item.td] || '-'}} </td>
       </ng-container>
 
       <!-- Edit User -->
       <ng-container matColumnDef="editButton">
-        <th mat-header-cell *matHeaderCellDef> <span *ngIf="false">Actions</span></th>
-        <td mat-cell *matCellDef="let element"> <a mat-raised-button routerLink="#" color="warn" *ngIf="false"> Unsubscribe </a> </td>
+        <th mat-header-cell *matHeaderCellDef> <span *ngIf="this.role === 'student'">Unsubscribe</span></th>
+        <td mat-cell *matCellDef="let element"> <button mat-button *ngIf="this.role === 'student'" (click)="UnsubscribeSubject(element.id)"><mat-icon>delete_forever</mat-icon></button></td>
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
@@ -99,70 +53,56 @@
 
 </ng-container>
 
-<!-- Student's Home -->
+<!-- Teacher's Home -->
 
-<ng-container *ngIf="role === 'teacher'">
+<ng-container *ngIf="this.role === 'teacher'">
   <article class="table">
 
-    <h1 class="table_lista">My Students Califications</h1>
+    <h1 class="table_lista"><span>Teacher Space | </span>My Subjects</h1>
 
-    <article class="search" *ngIf="false">
+    <article class="search" *ngIf="true">
       <form [formGroup]="formSearch" class="search_form">
           
           <mat-form-field appearance="outline" class="search_input">
               <mat-label>Filter: </mat-label>
-              <input matInput placeholder="Filter: ">
+              <input matInput (keyup)="applyFilter3($event)" placeholder="Filter: ">
           </mat-form-field>
       
       </form>
   </article>
+
+  <!-- Assgin me a new Subject Button -->     
+  <button type="button" mat-raised-button color="primary" routerLink="/dashboard/subjects_subscription" class="table_button_C">Subject Assignament</button>
   
     <!-- Table start -->
-
     <table mat-table [dataSource]="dataSource3" class="table_table">
 
       <!-- Position Column -->
-      <ng-container matColumnDef="user_id">
-        <th mat-header-cell *matHeaderCellDef>Subject Id</th>
-        <td mat-cell *matCellDef="let element"> {{element.user_id}} </td>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Subjects Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
       </ng-container>
     
       <!-- Name Student -->
-      <ng-container matColumnDef="matter_id">
-        <th mat-header-cell *matHeaderCellDef>Student Id</th>
-        <td mat-cell *matCellDef="let element"> {{element.matter_id}} </td>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Subjects</th>
+        <td mat-cell *matCellDef="let element"><a [routerLink]="['/dashboard/studentsList', element.id]"> {{element.name}} </a></td>
       </ng-container>
-
-      <!-- Califications 1 -->
-      <ng-container matColumnDef="nota_1">
-        <th mat-header-cell *matHeaderCellDef>Califications 1</th>
-        <td mat-cell *matCellDef="let element"> {{element.nota_1}} </td>
+      
+      <!-- More Items -->
+      <ng-container *ngFor="let item of formTeacherItems" matColumnDef={{item.colDef}}>
+        <th mat-header-cell *matHeaderCellDef>{{item.th}}</th>
+        <td mat-cell *matCellDef="let element">{{element[item.td]}}</td>
       </ng-container>
-
-      <!-- Califications 2 -->
-      <ng-container matColumnDef="nota_2">
-        <th mat-header-cell *matHeaderCellDef>Califications 1</th>
-        <td mat-cell *matCellDef="let element"> {{element.nota_2}} </td>
-      </ng-container>
-
-      <!-- Califications 3 -->
-      <ng-container matColumnDef="nota_3">
-        <th mat-header-cell *matHeaderCellDef>Califications 3</th>
-        <td mat-cell *matCellDef="let element"> {{element.nota_3}} </td>
-      </ng-container>
-
+      
       <!-- Edit User -->
     <ng-container matColumnDef="editButton">
-      <th mat-header-cell *matHeaderCellDef><span *ngIf="role === 'teacher'">Edit Califications</span></th>
+      <th mat-header-cell *matHeaderCellDef><span *ngIf="this.role === 'teacher'">Options</span></th>
 
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-          <mat-icon>more_vert</mat-icon>
+        <button mat-icon-button (click)="unassignTeacherSubject(element.id)" *ngIf="this.role === 'teacher'">
+          <mat-icon>delete</mat-icon>
         </button>
-        <mat-menu #menu="matMenu">
-          <!-- Edit button -->
-          <button mat-menu-item (click)="popUpEditCalifications()">Edit Califications</button>
-        </mat-menu>
       </td>
 
     </ng-container>

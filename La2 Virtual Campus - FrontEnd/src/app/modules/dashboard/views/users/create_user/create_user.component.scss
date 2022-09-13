@@ -5,6 +5,7 @@
 .createUser {
     display: flex;
     margin-top: 3rem;
+    padding-bottom: 110px;
     
     &_form {
         width: 600px;
@@ -53,13 +54,17 @@
 
         &_input {
             height: 3.25rem;
+            font-size: small;
+        }
+
+        &_button {
+            margin-top: 0.2rem;
         }
 
         &_BackButton {
             margin: 1rem 3rem 0rem 1rem;
         }
-    }
-    
+    }    
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -73,14 +78,18 @@
         }
 
         &_input {
-            height: 3rem;
+            height: 4rem;
+            font-size: small;
+        }
+
+        &_button {
+            margin-top: 0.2rem;
         }
 
         &_BackButton {
             margin: 1rem 3rem 0rem 1rem;
         }
     }
-   
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -92,12 +101,20 @@
         &_form {
             width: 500px;
         }
-        
+
+        &_input {
+            height: 4rem;
+            font-size: small;
+        }
+
+        &_button {
+            margin-top: 0.2rem;
+        }
+
         &_BackButton {
             margin: 2rem 3rem 0rem 2rem;
         }
     }
-   
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -110,11 +127,19 @@
             width: 600px;
         }
 
+        &_input {
+            height: 4rem;
+            font-size: small;
+        }
+
+        &_button {
+            margin-top: 0.2rem;
+        }
+
         &_BackButton {
-            margin: 3rem 3rem 0rem 3rem;
+            margin: 2rem 3rem 0rem 2rem;
         }
     }
-   
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -127,9 +152,17 @@
             width: 600px;
         }
 
+        &_input {
+            height: 4rem;
+            font-size: small;
+        }
+
+        &_button {
+            margin-top: 0.2rem;
+        }
+
         &_BackButton {
             margin: 3rem 3rem 0rem 3rem;
         }
     }
-   
 }

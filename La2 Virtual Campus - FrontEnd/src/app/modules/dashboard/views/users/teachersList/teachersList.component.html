@@ -1,0 +1,48 @@
+<fte-navbar></fte-navbar>
+
+    <article class="table">
+      
+      <h1><span class="table_lista" *ngIf="role === 'admin'">Admin's </span> <span class="table_lista">Teachers List</span></h1>
+
+      <!-- Filter Input Form -->
+      <article class="search">
+        <form [formGroup]="formSearch" class="search_form">
+            
+            <mat-form-field appearance="outline" class="search_input">
+                <mat-label>Filter: </mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Filter By Id">
+            </mat-form-field>
+        </form>
+      </article>
+
+      <!-- Top buttons -->
+      <button mat-raised-button color="warn" routerLink="/dashboard"><mat-icon>arrow_back</mat-icon></button>
+
+      <!-- Table start -->
+      <table mat-table [dataSource]="dataSource" class="table_table">
+      
+        <!-- Table start -->
+        <ng-container *ngFor="let item of formTeachersItems" matColumnDef={{item.colDef}}>
+          <th mat-header-cell *matHeaderCellDef>{{item.th}}</th>
+          <td mat-cell *matCellDef="let element"> {{element[item.td]}} </td>
+        </ng-container>
+        
+        <!-- Edit User -->
+        <ng-container matColumnDef="editButton">
+          <th mat-header-cell *matHeaderCellDef>Subscribe To</th>
+
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button aria-label="Suscribe">
+                <mat-icon>add</mat-icon>
+            </button>
+          </td>
+
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <!-- End Table -->
+      </table>
+    </article>
+
+<fte-footer></fte-footer>

@@ -1,19 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { FailedComponent, SuccessComponent } from '@fte/shared/components';
 import { AuthGuard } from '@fte/shared/guards';
 import { EditSubjectsPopUpComponent } from '../../../components/editSubjectsPopUp/editSubjectsPopUp.component';
 import { DashboardService } from '../../../sevices/dashboard.service';
 
 @Component({
-  selector: 'fte-index_subjects',
-  templateUrl: './index_subjects.component.html',
-  styleUrls: ['./index_subjects.component.scss']
+  selector: 'fte-subjectSubscription',
+  templateUrl: './subjectSubscription.component.html',
+  styleUrls: ['./subjectSubscription.component.scss']
 })
 
 //---------------------------------------------------------------------------------------------------
-export class IndexSubjectsComponent {
+export class SubjectSubscritionComponent {
 
   formSubjectsItems: FormSubjectsItem[] = [
     
@@ -64,29 +65,6 @@ export class IndexSubjectsComponent {
 
   //---------------------------------------------------------------------------------------------------
   
-  // PopUpButton
-  editPopUp(element: any): void {
-    const id = element.id;
-    const dialogRef = this._dialog.open(EditSubjectsPopUpComponent, {
-      width: '400px',
-      data: element,
-    }).afterClosed().subscribe(
-      response => {      
-        if(response) {
-          const values = response;
-          const edit = this._dashboard.editSubjects(id, values.name, values.quota, values.registered).subscribe(
-            response => {
-              console.log(response);              
-              this.dataSource = new MatTableDataSource([]);
-              this.getSubject();
-            }
-          )
-        }
-      });
-  }
-
-  //---------------------------------------------------------------------------------------------------
-  
   // Get Subjects Function
   getSubject() {
     const datos1 = this._dashboard.getSubjects().subscribe(
@@ -95,6 +73,58 @@ export class IndexSubjectsComponent {
       },
     );
   }
+
+  //---------------------------------------------------------------------------------------------------
+
+  // Add Subscrition Function
+  postSubscriptionSubject(id:any) {
+    this._dashboard.postSubscribeToSubject(id).subscribe(
+      response => {
+        this._dialog.open(SuccessComponent, {
+        width: '400px',
+        height: '200px',
+    });
+    setTimeout(() => {
+      this._dialog.closeAll();
+    }, 750);
+      }, error => {
+        this._dialog.open(FailedComponent, {
+          width: '400px',
+          height: '200px',
+        });
+        setTimeout(() => {
+          this._dialog.closeAll();
+        }, 750);
+        console.log(error);
+      }
+    )};
+
+    //---------------------------------------------------------------------------------------------------
+  
+    // Add Subscrition Function
+    postAssignSubject(element:any) {
+      const id = element;
+      this._dashboard.postSubjectAssignement(id).subscribe(
+        response => {
+          this._dialog.open(SuccessComponent, {
+            width: '400px',
+            height: '300px',
+      });
+      setTimeout(() => {
+        this._dialog.closeAll();
+      }, 750);
+        }, error => {
+          this._dialog.open(FailedComponent, {
+            width: '400px',
+            height: '300px',
+          });
+          setTimeout(() => {
+            this._dialog.closeAll();
+          }, 750);
+          console.log(error);
+        }
+      )};
+    
 
   //---------------------------------------------------------------------------------------------------
 
@@ -111,16 +141,6 @@ export class IndexSubjectsComponent {
     }
 
   //---------------------------------------------------------------------------------------------------
-    
-  // Delete Button
-  deleteSubject(id: number) {
-    this._dashboard.deleteSubject(id).subscribe(
-      response => {
-        this.dataSource = new MatTableDataSource([]);
-        this.getSubject();
-      }
-    );
-  }
 }
 
 interface FormSubjectsItem {

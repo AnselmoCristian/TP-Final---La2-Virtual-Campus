@@ -7,21 +7,41 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './editSubjectsPopUp.component.html',
   styleUrls: ['./editSubjectsPopUp.component.scss']
 })
+
+//---------------------------------------------------------------------------------------------------
 export class EditSubjectsPopUpComponent {
 
-  // Inputs
+  formEditSubjectsItems: FormEditSubjectsItem[] = [
+    {
+      label:'Name',
+      name: 'name',
+      placeHolder: 'Subject Name',
+    },
+    {
+      label:'Subject Quota',
+      name: 'quota',
+      placeHolder: 'Subject Quota',
+    },
+    {
+      label:'Subject Registered',
+      name: 'registered',
+      placeHolder: 'Subject Registered',
+    },
+  ];
+
+  //---------------------------------------------------------------------------------------------------
+
+  // Inputs form
   formEditSubjects = new FormGroup({
     name: new FormControl('', { validators: [ Validators.required ] }),
     quota: new FormControl('', { validators: [ Validators.required ] }),
     registered: new FormControl('', { validators: [ Validators.required ] }),
   });
 
-  hide = true;
-
-  // Input Select
-  selectedValue!: string;
-
+  //---------------------------------------------------------------------------------------------------
+  // Constructor
   constructor( public _dialogRef: MatDialogRef<EditSubjectsPopUpComponent>, @Inject(MAT_DIALOG_DATA) public data: any ) {
+
     this.formEditSubjects.patchValue({
       name: this.data.name,
       quota: this.data.quota,
@@ -29,18 +49,21 @@ export class EditSubjectsPopUpComponent {
     });
   }
 
+  //---------------------------------------------------------------------------------------------------
+
   // Cancel Button
   cancelButton() {
     this._dialogRef.close();
   }
-
+  
   // Submit Button
-  editSubject() {
+  editSubjectButton() {
     this._dialogRef.close(this.formEditSubjects.value);
   }
 }
 
-interface Role {
-  value: string;
-  viewValue: string;
+interface FormEditSubjectsItem {
+  label: string;
+  name: any;
+  placeHolder: any;
 }

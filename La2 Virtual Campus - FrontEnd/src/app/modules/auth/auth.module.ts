@@ -14,6 +14,7 @@ import { AuthService } from '../auth/sevices/auth.service';
 const views = [LoginComponent, RegisterComponent];
 
 
+
 @NgModule({
   declarations: [
     AuthComponent,
@@ -24,7 +25,7 @@ const views = [LoginComponent, RegisterComponent];
     AuthRoutingModule,
     ComponentsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [AuthService]
 })

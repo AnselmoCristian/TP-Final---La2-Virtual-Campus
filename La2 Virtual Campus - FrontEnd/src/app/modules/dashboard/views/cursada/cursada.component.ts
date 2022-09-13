@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthGuard } from '@fte/shared/guards';
@@ -11,117 +11,167 @@ import { DashboardService } from '../../sevices/dashboard.service';
   templateUrl: './cursada.component.html',
   styleUrls: ['./cursada.component.scss']
 })
-export class CursadaComponent {
-  /*
-  tableItems: TableItems[] = [
-    {
-      matDef: 'auditUsersButton',
-      columnDef: "Audit Users",
-      element: 'element',
-    },
-    {
-      matDef: 'id',
-      columnDef: "N° Id",
-      element: 'element',
-    },
-  ];      */
-  
 
-  // Adim's Table
-  ELEMENT_DATA: CurzadaTable[] = [
-    { id: 2 },
+//---------------------------------------------------------------------------------------------------
+export class CursadaComponent {
+
+  formTeacherItems: FormTeacherItem[] = [
+    
+    {
+      colDef: 'registered',
+      th: 'Subject\'s Registered',
+      td: 'registered',
+    },
   ];
 
-  displayedColumns: String[] = ['id', 'auditUsersButton', 'auditSubjectstButton'];
-  dataSource = this.ELEMENT_DATA;
+  //---------------------------------------------------------------------------------------------------
 
+  formStudentsItems: FormStudentsItem[] = [
+    
+    {
+      colDef: 'id',
+      th: 'Id',
+      td: 'id',
+    },
+    {
+      colDef: 'name',
+      th: 'Name',
+      td: 'name',
+    },
+    {
+      colDef: 'note_1',
+      th: 'Note',
+      td: 'note_1',
+    },
+    {
+      colDef: 'note_2',
+      th: 'Note',
+      td: 'note_2',
+    },
+    {
+      colDef: 'note_3',
+      th: 'Final',
+      td: 'note_3',
+    },
+  ];
+
+  //---------------------------------------------------------------------------------------------------
 
   // Student's Table
-  ELEMENT_DATA2: CurzadaTable2[] = [
-    { id: 1, name: 'Matematicas', quota: 30, registered: 20, createdAt: '31/03/2023', updatedAt: '31/08/2023' },
-    { id: 2, name: 'Programacion', quota: 30, registered: 20, createdAt: '31/03/2023', updatedAt: '31/08/2023'  },
-    { id: 3, name: 'Ingenieria de Software', quota: 30, registered: 20, createdAt: '31/03/2023', updatedAt: '31/08/2023' },
-    { id: 4, name: 'Arquitectura de Computadoras', quota: 30, registered: 20, createdAt: '31/03/2023', updatedAt: '31/08/2023' }
-  ];
+  displayedColumns2: String[] = [ 'name', 'note_1', 'note_2', 'note_3', 'editButton'];
+  dataSource2 = new MatTableDataSource([]);
 
-  displayedColumns2: String[] = ['id', 'name', 'quota', 'registered', 'editButton'];
-  dataSource2 = this.ELEMENT_DATA2;
+  //---------------------------------------------------------------------------------------------------
 
+  // Teacher's Table  
+  displayedColumns3: String[] = [ 'id', 'name', 'registered', 'editButton'];
+  dataSource3 = new MatTableDataSource([]);
 
-  // Teacher's Table
+  //---------------------------------------------------------------------------------------------------
 
-  ELEMENT_DATA3: CurzadaTable3[] = [
-    { user_id: 1, matter_id: 2, nota_1: 3, nota_2: 3, nota_3: 3, createdAt: '31/03/2023', updatedAt: '31/08/2023' },
-    { user_id: 1, matter_id: 2, nota_1: 3, nota_2: 3, nota_3: 3, createdAt: '31/03/2023', updatedAt: '31/08/2023' },
-    { user_id: 1, matter_id: 2, nota_1: 3, nota_2: 3, nota_3: 3, createdAt: '31/03/2023', updatedAt: '31/08/2023' },
-    { user_id: 1, matter_id: 2, nota_1: 3, nota_2: 3, nota_3: 3, createdAt: '31/03/2023', updatedAt: '31/08/2023' },
-    { user_id: 1, matter_id: 2, nota_1: 3, nota_2: 3, nota_3: 3, createdAt: '31/03/2023', updatedAt: '31/08/2023' },
-  ];
-  
-  displayedColumns3: String[] = ['user_id', 'matter_id', 'nota_1', 'nota_2', 'nota_3'];
-  dataSource3 = this.ELEMENT_DATA3
-
+  // Role var
   role!: any;
+  
+  // userLogeadoIs var
   userLogeadoIs!: any;
-  userIdIs!: any;
-  hide!: any;
 
+  //---------------------------------------------------------------------------------------------------
+  // Constructor
   constructor(private _dialog: MatDialog, private _authGuard: AuthGuard, private _dashboard: DashboardService ) {
     this.role = this._authGuard.getUserRole();
     this.userLogeadoIs = this._authGuard.getUserId();
-  }
-  
-  
-  // PopUpButton
-  popUpEditCalifications(): void {
-    const dialogRef = this._dialog.open(EditCalifPopUpComponent, {
-      width: '400px',
-    });
+
+    this.getUserSubject();
+    this.getStudentSubjects();
   }
 
-  getUserSubject(element: any) {
-    const id = element.id;
+  //---------------------------------------------------------------------------------------------------
+
+  // Unassign Teacher Subject
+  unassignTeacherSubject(element: any): void {
+    const id = element;
     console.log(id);    
-    const datos1 = this._dashboard.getUserSubjects(id).subscribe(
+    this._dashboard.deleteSubjectAssign(id).subscribe(
       response => {
-        console.log(response.content);
-
-        //this.dataSource3 = new MatTableDataSource(response.content);
-      },
-    );
+        this.dataSource2 = new MatTableDataSource([]);
+        this.getUserSubject();
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
-  // Search
+  //---------------------------------------------------------------------------------------------------
+
+  // Get Students Subject List
+  getStudentSubjects() {
+    if(this.role === 'student') {
+    this._dashboard.getStudentSubjects().subscribe(
+      response => {
+        this.dataSource2 = new MatTableDataSource(response.content);
+        },
+      );
+    }
+  }
+
+  //---------------------------------------------------------------------------------------------------
+  
+  // Get User Subjects Function
+  getUserSubject() {
+    if(this.role === 'teacher') {
+    const datos = this._dashboard.getUsersSubjects().subscribe(
+      response => {
+        this.dataSource3 = new MatTableDataSource(response.content);
+        },
+      );
+    }
+  }
+
+  //---------------------------------------------------------------------------------------------------
+
+  // Delete Subscription to a Subject
+  UnsubscribeSubject(id:any) {
+    this._dashboard.deleteUnsubscribeToSubject(id).subscribe(
+      response => {
+        this.dataSource2 = new MatTableDataSource([]);
+        this.getStudentSubjects();
+      }
+    );
+
+  }
+
+  //---------------------------------------------------------------------------------------------------
+  
+  // Search form
   formSearch = new FormGroup({
     search: new FormControl('')
   });
+
+  // Filter
+  applyFilter2(event: Event) {
+    const filterValue2 = (
+      event.target as HTMLInputElement).value;
+      this.dataSource2.filter = filterValue2.trim().toLowerCase();
+  }
+
+  // Filter
+  applyFilter3(event: Event) {
+    const filterValue3 = (
+      event.target as HTMLInputElement).value;
+      this.dataSource3.filter = filterValue3.trim().toLowerCase();
+  }
+
+  //---------------------------------------------------------------------------------------------------
 }
 
-export interface CurzadaTable {
-  id: Number;
+interface FormStudentsItem {
+  colDef: string;
+  th: string;
+  td: string;
 }
 
-export interface CurzadaTable2 {
-  id: number;
-  name: String;
-  quota: number;
-  registered: number;
-  createdAt: String;
-  updatedAt: String;
-}
-
-export interface CurzadaTable3 {
-  user_id: number;
-  matter_id: number;
-  nota_1: number;
-  nota_2: number;
-  nota_3: number;
-  createdAt: String;
-  updatedAt: String;
-}
-
-export interface TableItems {
-    matDef: string;
-    columnDef: string;
-    element: string;
+interface FormTeacherItem {
+  colDef: string;
+  th: string;
+  td: string;
 }

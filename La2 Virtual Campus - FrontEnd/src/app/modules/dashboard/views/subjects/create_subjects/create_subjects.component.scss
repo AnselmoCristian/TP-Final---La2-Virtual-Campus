@@ -5,6 +5,7 @@
 .createSubject {
     display: flex;
     margin-top: 3rem;
+    padding-bottom: 110px;
     
     &_form {
         width: 600px;
@@ -45,17 +46,25 @@
 @media only screen and (max-width: 600px) {
 
     .createSubject {
-        margin-top: 2rem;
+        margin-top: 1rem;
         
         &_form {
             width: 325px;
         }
 
+        &_input {
+            height: 3.25rem;
+            font-size: small;
+        }
+
+        &_button {
+            margin-top: 0.2rem;
+        }
+
         &_BackButton {
             margin: 1rem 3rem 0rem 1rem;
         }
-    }
-    
+    }    
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -68,28 +77,44 @@
             width: 425px;
         }
 
+        &_input {
+            height: 4rem;
+            font-size: small;
+        }
+
+        &_button {
+            margin-top: 0.2rem;
+        }
+
         &_BackButton {
             margin: 1rem 3rem 0rem 1rem;
         }
     }
-   
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
 
     .createSubject {
-        margin-top: 2rem;
+        margin-top: 1rem;
         
         &_form {
-            width: 525px;
+            width: 500px;
+        }
+
+        &_input {
+            height: 4rem;
+            font-size: small;
+        }
+
+        &_button {
+            margin-top: 0.2rem;
         }
 
         &_BackButton {
             margin: 2rem 3rem 0rem 2rem;
         }
     }
-   
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -102,11 +127,19 @@
             width: 600px;
         }
 
+        &_input {
+            height: 4rem;
+            font-size: small;
+        }
+
+        &_button {
+            margin-top: 0.2rem;
+        }
+
         &_BackButton {
-            margin: 3rem 3rem 0rem 3rem;
+            margin: 2rem 3rem 0rem 2rem;
         }
     }
-   
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -119,9 +152,17 @@
             width: 600px;
         }
 
+        &_input {
+            height: 4rem;
+            font-size: small;
+        }
+
+        &_button {
+            margin-top: 0.2rem;
+        }
+
         &_BackButton {
             margin: 3rem 3rem 0rem 3rem;
         }
     }
-   
 }

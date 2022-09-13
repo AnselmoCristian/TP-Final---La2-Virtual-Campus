@@ -2,7 +2,7 @@
     font-size: large;
 }
 
-.editUser {
+.editCalifications {
     display: flex;
     padding: 1rem;
     border: 1px solid black;
@@ -21,7 +21,6 @@
 
     &_button {
         width: 40%;
-        // height: 3rem;
         margin-left: 1.4rem;
     }
 
@@ -36,8 +35,99 @@
     &_BackButton {
         margin: 3rem 3rem 0rem 3rem;
     }
+}
 
-    /* &_option {
-        text-align: center;
-    } */
+//----------------------------------------------------------------------------
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    .editCalifications {
+        padding: 0rem;
+    
+        &_button {
+            width: 100%;
+            margin-left: auto;
+        }
+    
+        &_BackButton {
+            margin: 1rem 1rem 0rem 1rem;
+        }
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+    .editCalifications {
+        padding: 1rem;
+    
+        &_titulo {
+            margin-bottom: 3rem;
+        }
+    
+        &_button {
+            width: 100%;
+            margin-left: auto;
+        }
+    
+        &_BackButton {
+            margin: 1rem 3rem 0rem 1rem;
+        }
+    }   
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    .editCalifications {
+        padding: 1rem;
+    
+        &_titulo {
+            margin-bottom: 3rem;
+        }
+    
+        &_button {
+            width: 40%;
+            margin-left: 1.4rem;
+        }
+    
+        &_BackButton {
+            margin: 1rem 3rem 0rem 1rem;
+        }
+    }   
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    
+    .editCalifications {
+        padding: 1rem;
+    
+        &_button {
+            width: 40%;
+            margin-left: 1.4rem;
+        }
+    
+        &_BackButton {
+            margin: 3rem 3rem 0rem 3rem;
+        }
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+    .editCalifications {
+        padding: 1rem;
+    
+        &_button {
+            width: 40%;
+            margin-left: 1.4rem;
+        }
+    
+        &_BackButton {
+            margin: 3rem 3rem 0rem 3rem;
+        }
+    }
 }

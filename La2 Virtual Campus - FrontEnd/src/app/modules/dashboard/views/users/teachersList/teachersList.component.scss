@@ -1,18 +1,14 @@
 .toolbar_a{
     font-size: large;
+    margin-bottom: 0%;
 }
 
 .table {
     margin: 8rem;
     margin-top: 4rem;
-    padding-bottom: 110px;
 
     &_button_A {
         margin: 1rem;
-    }
-
-    &_button_C {
-        display: flex;
     }
 
     &_button {
@@ -64,7 +60,7 @@
 
     .table {
         margin: 2rem;
-        margin-top: 1rem;
+        margin-top: 0rem;
 
         &_lista {
             font-size: medium;
@@ -87,7 +83,7 @@
 
     .table {
         margin: 2rem;
-        margin-top: 2rem;
+        margin-top: 0rem;
 
         &_lista {
             font-size: large;

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Users
-import { IndexUserComponent } from './views/users/index_user/index_user.component';
 import { CreateUserComponent } from './views/users/create_user/create_user.component';
 
 //Subjects
@@ -15,18 +14,21 @@ import { CursadaComponent } from './views/cursada/cursada.component';
 //Contact Us
 import { ContactUsComponent } from './views/contact_us/contact_us.component';
 import { AuthGuard } from '@fte/shared/guards';
+import { StudentsListComponent } from './views/UsersSubjects/studentsList/studentsList.component';
+import { MessagesComponent } from './views/messages/messages.component';
+import { TeachersListComponent } from './views/users/teachersList/teachersList.component';
+import { SubjectSubscritionComponent } from './views/UsersSubjects/subjectSubscription/subjectSubscription.component';
 
 
 const routes: Routes = [
   
-  // For Users
-  {
-    path: 'index_user',
-    component: IndexUserComponent
-  },
   {
     path: 'create_user',
     component: CreateUserComponent
+  },
+  {
+    path: 'teachersList',
+    component: TeachersListComponent
   },
   
   // For Subjects
@@ -38,12 +40,26 @@ const routes: Routes = [
     path: 'create_subjects',
     component: CreateSubjectsComponent
   },
+  {
+    path: 'studentsList/:matter_id',
+    component: StudentsListComponent
+  },
+  {
+    path: 'subjects_subscription',
+    component: SubjectSubscritionComponent
+  },
 
   // Home
   {
     path: '',
     canActivate: [AuthGuard],
     component: CursadaComponent
+  },
+
+  // Messages
+  {
+    path: 'messages',
+    component: MessagesComponent
   },
 
   // Contact Us
