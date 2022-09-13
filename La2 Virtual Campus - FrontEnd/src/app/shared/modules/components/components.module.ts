@@ -7,14 +7,15 @@ import { FooterComponent } from 'src/app/shared/components/footer/footer.compone
 // Sacar Mas a delante por el Navbar Final
 import { MaterialModule } from '../material/material.module';
 
+import { SuccessComponent, FailedComponent, } from '@fte/shared/components';
 
-const components = [NotfoundComponent, FooterComponent];
+const components = [NotfoundComponent, FooterComponent, SuccessComponent, FailedComponent,];
 
 @NgModule({
   declarations: [...components],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
   ],
   exports: [...components]
 })

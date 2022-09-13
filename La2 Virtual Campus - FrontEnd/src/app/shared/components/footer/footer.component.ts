@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  foot = window.outerHeight - 55;
-
   constructor() {
   }
 

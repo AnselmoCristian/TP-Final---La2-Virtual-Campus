@@ -5,10 +5,52 @@
     width: 100%;
     position: fixed;
     bottom: 0px;
+    z-index: 10;
 }
 
 p {
     font-size: large;
     color: white;
     text-align: center;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    p {
+        font-size: small;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+    p {
+        font-size: small;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    p {
+        font-size: medium;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+    p {
+        font-size: large;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+    p {
+        font-size: large;
+    }        
 }

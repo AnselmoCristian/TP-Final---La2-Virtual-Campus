@@ -7,9 +7,13 @@ import { Character } from '../../models/character';
   templateUrl: './notfound.component.html',
   styleUrls: ['./notfound.component.scss']
 })
+
+//---------------------------------------------------------------------------------------------------
 export class NotfoundComponent {
   charactersResponse!: Character;
 
+  //---------------------------------------------------------------------------------------------------
+  // Constructor
   constructor(private _externApi: ExternApiService) {
     
     const valor = this._externApi.getExternApi().subscribe(

@@ -1,15 +1,16 @@
 .notFound {
-    margin: 2rem;
+    margin: 1rem;
     text-align: center;
 
     &_parrafo {
         font-size: 200px;
-        margin: 8rem;
+        margin: 8rem 0rem 8rem 0rem;
         color: orangered;
     }
 
     &_section {        
-        text-align: center;        
+        text-align: center;
+        margin: 0%;
     }
 
     &_imagen {
